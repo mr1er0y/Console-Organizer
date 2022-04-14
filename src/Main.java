@@ -1,18 +1,26 @@
-//package com.javacodegeeks.basics;
-
 import java.io.Console;
 import java.util.Scanner;
+import Task.Tasks;
 
 public class Main {
 
     public static void main(String[] args) {
         Console console = System.console();
-        if(console != null) {
+        Tasks task_man = new Tasks();
+        if (console != null) {
             Scanner sc = new Scanner(console.reader());
-            System.out.println("Enter your name - ");
+            System.out.println("Enter your command");
             String input = sc.nextLine();
-            System.out.println("Hello "+input);
-        }else {
+            if (input.equals("add")) {
+                System.out.println("Write task");
+                input = sc.nextLine();
+                task_man.add(input);
+            }
+            if (input.equals("print")) {
+                System.out.println("Task | is_done");
+//                task_man.add(input);
+            }
+        } else {
             System.out.println("Console is null");
         }
 

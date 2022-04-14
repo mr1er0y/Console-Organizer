@@ -23,11 +23,12 @@ public class TaskFiles {
             e.printStackTrace();
         }
     }
+
     public void save_file(String filename, Task[] list_tasks) {
         try {
             FileWriter myWriter = new FileWriter(filename);
-            for(Task task: list_tasks) {
-                myWriter.write("Task:" +task.text +"Deadline:" + task.text + "");
+            for (Task task : list_tasks) {
+                myWriter.write("Task:" + task.text + "Deadline:" + task.text + "is_done" + task.is_don);
             }
 
             myWriter.close();
