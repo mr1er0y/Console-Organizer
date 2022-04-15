@@ -1,13 +1,15 @@
 import java.io.Console;
 import java.util.Scanner;
+
+import Task.Task;
 import Task.Tasks;
 
 public class Main {
 
     public static void main(String[] args) {
         Console console = System.console();
-        Tasks task_man = new Tasks();
-        if (console != null) {
+        Tasks task_man = new Tasks(5);
+        while (console != null) {
             Scanner sc = new Scanner(console.reader());
             System.out.println("Enter your command");
             String input = sc.nextLine();
@@ -18,11 +20,13 @@ public class Main {
             }
             if (input.equals("print")) {
                 System.out.println("Task | is_done");
-//                task_man.add(input);
+                for (Task task : task_man.task_list) {
+                    System.out.println(task.text);
+                }
             }
-        } else {
-            System.out.println("Console is null");
+            console = System.console();
         }
+        System.out.println("Console is null");
 
     }
 

@@ -1,9 +1,18 @@
 package Task;
 
-public class Tasks {
-    protected Task[] task_list;
+import java.util.ArrayList;
 
-    public String add(String text) {
-        return null;
+public class Tasks {
+    public ArrayList<Task> task_list;
+
+    public Tasks(int n) {
+        task_list = new ArrayList<Task>(n);
     }
+
+    public void add(String text) {
+        Task tmp = null;
+        tmp.text = text;
+        task_list.add(tmp);
     }
+
+}
