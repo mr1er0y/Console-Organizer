@@ -8,8 +8,10 @@ public class Task {
     public String[] tags;
     public Boolean is_don;
 
+    public Task(String new_text) {
+        this.text = new_text;
+    }
     public Task() {
-
     }
 }
 

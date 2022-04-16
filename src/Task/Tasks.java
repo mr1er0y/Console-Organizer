@@ -1,18 +1,16 @@
 package Task;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Tasks {
-    public ArrayList<Task> task_list;
+    public static LinkedList<Task> task_list;
 
     public Tasks(int n) {
-        task_list = new ArrayList<Task>(n);
+        task_list = new LinkedList<Task>();
     }
 
-    public void add(String text) {
-        Task tmp = null;
-        tmp.text = text;
-        task_list.add(tmp);
+    public void add(String text){
+        task_list.add(new Task(text));
     }
 
 }

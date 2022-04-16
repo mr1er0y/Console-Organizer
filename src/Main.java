@@ -16,6 +16,7 @@ public class Main {
             if (input.equals("add")) {
                 System.out.println("Write task");
                 input = sc.nextLine();
+//                System.out.println("EXXE");
                 task_man.add(input);
             }
             if (input.equals("print")) {
