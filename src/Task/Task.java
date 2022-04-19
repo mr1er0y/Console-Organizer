@@ -12,6 +12,7 @@ public class Task {
         this.text = new_text;
     }
     public Task() {
+
     }
 }
 
