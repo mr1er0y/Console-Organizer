@@ -1,12 +1,45 @@
+//package examples.dustin.commandline.picocli;
+
+import static java.lang.System.out;
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+
+
 import java.io.Console;
 import java.util.Scanner;
 
 import Task.Task;
 import Task.Tasks;
+/**
+ * Demonstrate Java-based command-line processing with picocli.
+ */
+@Command(
+        name="Main",
+        description="@|bold Demonstrating picocli |@",
+        headerHeading="@|bold,underline Demonstration Usage|@:%n%n")
+public class Main
+{
+    @Option(names={"-v", "--verbose"}, description="Verbose output?")
+    private boolean verbose;
 
-public class Main {
+    @Option(names={"-f", "--file"}, description="Path and name of file", required=true)
+    private String fileName;
 
-    public static void main(String[] args) {
+    @Option(names={"-h", "--help"}, description="Display help/usage.", help=true)
+    boolean help;
+
+    public static void main(final String[] arguments)
+    {
+        final Main main = CommandLine.populateCommand(new Main(), arguments);
+        if (main.help)
+        {
+            CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
+        }
+        if (main.fileName != null) {
+            out.println("Your file is: " + main.fileName );
+        }
         Console console = System.console();
         Tasks task_man = new Tasks(5);
         while (console != null) {
@@ -16,7 +49,6 @@ public class Main {
             if (input.equals("add")) {
                 System.out.println("Write task");
                 input = sc.nextLine();
-//                System.out.println("EXXE");
                 task_man.add(input);
             }
             if (input.equals("print")) {
