@@ -33,15 +33,17 @@ public class Main
     public static void main(final String[] arguments)
     {
         final Main main = CommandLine.populateCommand(new Main(), arguments);
+        Tasks task_man = new Tasks(5);
         if (main.help)
         {
             CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
         }
         if (main.fileName != null) {
             out.println("Your file is: " + main.fileName );
+            task_man.read(main.fileName);
         }
         Console console = System.console();
-        Tasks task_man = new Tasks(5);
+
         while (console != null) {
             Scanner sc = new Scanner(console.reader());
             System.out.println("Enter your command");
