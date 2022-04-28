@@ -40,11 +40,13 @@ public class Main
         }
         if (main.fileName != null) {
             out.println("Your file is: " + main.fileName );
+
 //            task_man.read(main.fileName);
         }
         if (main.new_fileName != null) {
             out.println("Your file is: " + main.new_fileName );
 //            task_man.read(main.new_fileName);
+
         }
         Console console = System.console();
 
@@ -62,6 +64,12 @@ public class Main
                 for (Task task : task_man.task_list) {
                     System.out.println(task.text);
                 }
+            }
+            if (input.equals("save")) {
+                System.out.println("Write file name");
+                input = sc.nextLine();
+                task_man.save(input);
+                //to write
             }
             console = System.console();
         }
