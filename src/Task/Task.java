@@ -2,7 +2,8 @@ package Task;
 
 import java.util.ArrayList;
 import java.util.Date;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
+
 
 public class Task {
     public Date deadline;
@@ -13,11 +14,12 @@ public class Task {
     public Task(String new_text) {
         this.text = new_text;
     }
+
     public Task() {
 
     }
 
-    public SaveIntoJson() {
+     public JSONObject SaveIntoJson() {
         JSONObject json = new JSONObject();
         
         json.put("deadline", this.deadline);

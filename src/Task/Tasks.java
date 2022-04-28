@@ -1,6 +1,7 @@
 package Task;
 
 import java.util.ArrayList;
+import org.json.JSONObject;
 
 public class Tasks {
     public  ArrayList<Task> task_list;
@@ -15,6 +16,13 @@ public class Tasks {
 
     public void save(String filename){
 //        save_file(String filename,  task_list);
+    }
+    public  ArrayList<JSONObject> arr_json() {
+        ArrayList<JSONObject> js = new ArrayList<JSONObject>();
+        for (Task el: task_list ) {
+            js.add(el.SaveIntoJson());
+        }
+        return js;
     }
 
     public void read(String filename){

@@ -28,7 +28,7 @@ public class TaskFiles {
         try {
             FileWriter myWriter = new FileWriter(filename);
             for (Task task : list_tasks) {
-                myWriter.write("Task:" + task.text + "Deadline:" + task.text + "is_done" + task.is_don);
+                myWriter.write("Task:" + task.text + "Deadline:" + task.text + "is_done" + task.is_done);
             }
 
             myWriter.close();
