@@ -21,11 +21,11 @@ import Task.Tasks;
         headerHeading="@|bold,underline Demonstration Usage|@:%n%n")
 public class Main
 {
-    @Option(names={"-v", "--verbose"}, description="Verbose output?")
-    private boolean verbose;
-
     @Option(names={"-f", "--file"}, description="Path and name of file", required=true)
     private String fileName;
+
+    @Option(names={"-n", "--newfile"}, description="Creat new file", required=true)
+    private String new_fileName;
 
     @Option(names={"-h", "--help"}, description="Display help/usage.", help=true)
     boolean help;
@@ -40,7 +40,13 @@ public class Main
         }
         if (main.fileName != null) {
             out.println("Your file is: " + main.fileName );
-            //task_man.read(main.fileName);
+
+//            task_man.read(main.fileName);
+        }
+        if (main.new_fileName != null) {
+            out.println("Your file is: " + main.new_fileName );
+//            task_man.read(main.new_fileName);
+
         }
         Console console = System.console();
 
@@ -72,3 +78,4 @@ public class Main
     }
 
 }
+//java -cp $lib\:src src/Main.java -f=input.txt
