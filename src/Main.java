@@ -24,8 +24,8 @@ public class Main
     @Option(names={"-f", "--file"}, description="Path and name of file", required=true)
     private String fileName;
 
-    @Option(names={"-n", "--newfile"}, description="Creat new file", required=true)
-    private String new_fileName;
+    @Option(names={"-n", "--newfile"}, description="Creat new file", required=false)
+    private String newfileName;
 
     @Option(names={"-h", "--help"}, description="Display help/usage.", help=true)
     boolean help;
@@ -43,8 +43,8 @@ public class Main
 
 //            task_man.read(main.fileName);
         }
-        if (main.new_fileName != null) {
-            out.println("Your file is: " + main.new_fileName );
+        if (main.newfileName != null) {
+            out.println("Your file is: " + main.newfileName );
 //            task_man.read(main.new_fileName);
 
         }
