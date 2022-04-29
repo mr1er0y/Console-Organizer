@@ -61,9 +61,22 @@ public class Main
             }
             if (input.equals("save")) {
                 System.out.println("Write file name");
-                input = sc.nextLine();
-                task_man.save(input);
-                //to write
+                String fname = sc.nextLine();
+                task_man.save(fname);
+            }
+            if (input.equals("edit")) {
+                out.println("Write task name");
+                String task_to_edit = sc.nextLine();
+                out.println("Edit name or deadline?");
+                String option = sc.nextLine();
+                out.println("Write new value");
+                String new_value = sc.nextLine();
+                task_man.edit(task_to_edit, option, new_value);
+            }
+            if (input.equals("delete")) {
+                out.println("Enter task name");
+                String to_delete = sc.nextLine();
+                task_man.delete(to_delete);
             }
             console = System.console();
         }

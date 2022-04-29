@@ -24,7 +24,7 @@ public class TaskFiles {
         File file = new File("/Users/sania/IdeaProjects/Console-Organizer/"+filename);
         try (FileWriter myWriter = new FileWriter(file)) {
                 for (Task task : list_tasks) {
-                    myWriter.write("Task:" + task.text + "Deadline:" + task.text + "is_done" + task.is_don);
+                    myWriter.write("Task: " + task.text + " Deadline: " + task.deadline + " is_done " + task.is_don);
                 }
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {

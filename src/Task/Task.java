@@ -11,9 +11,24 @@ public class Task {
 
     public Task(String new_text) {
         this.text = new_text;
+        this.is_don = Boolean.FALSE;
     }
-    public Task() {
+    public Task(String new_text, Date deadline) {
+        this.text = new_text;
+        this.deadline = deadline;
+        this.is_don = Boolean.FALSE;
+    }
 
+    public void edit_name(String new_name) {
+        text = new_name;
+    }
+
+    public void edit_deadline(Date new_deadline) {
+        deadline = new_deadline;
+    }
+
+    public void done() {
+        is_don = Boolean.TRUE;
     }
 }
 
