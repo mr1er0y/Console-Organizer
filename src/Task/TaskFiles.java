@@ -28,7 +28,7 @@ public class TaskFiles {
 
 
     public void save_file(String filename, ArrayList<Task> list_tasks) {
-        File file = new File( "/Users/leonid/IdeaProjects/Console-Organizer/input.txt"+ filename);
+        File file = new File( "/Users/masha/Documents/Console-Organizer/src/"+ filename);
         try (FileWriter myWriter = new FileWriter(file)) {
             for (Task task : list_tasks) {
                 myWriter.write("Task:" + task.text + "Deadline:" + task.text + "is_done" + task.is_done);

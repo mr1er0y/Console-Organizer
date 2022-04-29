@@ -22,7 +22,7 @@ public class Tasks {
         TaskFiles a = new TaskFiles();
         a.save_file(filename,  task_list);
     }
-    public  ArrayList<JSONObject> arr_json() {
+    public ArrayList<JSONObject> arr_json() {
         ArrayList<JSONObject> js = new ArrayList<JSONObject>();
         for (Task el: task_list ) {
             js.add(el.SaveIntoJson());
