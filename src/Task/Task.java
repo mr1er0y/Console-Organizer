@@ -13,12 +13,12 @@ public class Task {
 
     public Task(String new_text) {
         this.text = new_text;
-        this.is_don = Boolean.FALSE;
+        this.is_done = Boolean.FALSE;
     }
     public Task(String new_text, Date deadline) {
         this.text = new_text;
         this.deadline = deadline;
-        this.is_don = Boolean.FALSE;
+        this.is_done = Boolean.FALSE;
     }
 
     public void edit_name(String new_name) {
@@ -29,11 +29,11 @@ public class Task {
         deadline = new_deadline;
     }
 
-    public Task() {
+    public Task() { }
 
 
     public void done() {
-        is_don = Boolean.TRUE;
+        is_done = Boolean.TRUE;
     }
 
      public JSONObject SaveIntoJson() {

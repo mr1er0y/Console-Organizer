@@ -28,12 +28,12 @@ public class TaskFiles {
 
 
     public void save_file(String filename, ArrayList<Task> list_tasks) {
-        File file = new File( "/Users/masha/Documents/Console-Organizer/src/"+ filename);
+        File file = new File(System.getProperty("user.dir") + File.separator + filename);
         try (FileWriter myWriter = new FileWriter(file)) {
 
-                for (Task task : list_tasks) {
-                    myWriter.write("Task: " + task.text + " Deadline: " + task.deadline + " is_done " + task.is_don);
-                }
+            for (Task task : list_tasks) {
+                myWriter.write("Task: " + task.text + " Deadline: " + task.deadline + " is_done " + task.is_done + "\n");
+            }
 
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -43,8 +43,7 @@ public class TaskFiles {
     }
 
     public void save_jsfile(String filename, ArrayList<JSONObject> list_js) {
-
-        File file = new File(System.getProperty("user.dir") + filename);
+        File file = new File(System.getProperty("user.dir") + File.separator + filename);
         try (FileWriter myWriter = new FileWriter(file)) {
             for (JSONObject el : list_js) {
                 myWriter.write(el.toString());

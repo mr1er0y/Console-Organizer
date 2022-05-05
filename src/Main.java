@@ -87,7 +87,6 @@ public class Main
             console = System.console();
         }
         System.out.println("Console is null");
-
     }
 
 }
