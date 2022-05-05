@@ -15,6 +15,7 @@ public class Task {
         this.text = new_text;
         this.is_done = Boolean.FALSE;
     }
+
     public Task(String new_text, Date deadline) {
         this.text = new_text;
         this.deadline = deadline;
@@ -29,16 +30,17 @@ public class Task {
         deadline = new_deadline;
     }
 
-    public Task() { }
+    public Task() {
+    }
 
 
     public void done() {
         is_done = Boolean.TRUE;
     }
 
-     public JSONObject SaveIntoJson() {
+    public JSONObject SaveIntoJson() {
         JSONObject json = new JSONObject();
-        
+
         json.put("deadline", this.deadline);
         json.put("text", this.text);
         json.put("tags", this.tags);
@@ -46,5 +48,15 @@ public class Task {
 
         return json;
     }
-}
 
+    public Task parseTaskObject(JSONObject js) {
+        Task task = new Task();
+        task.text = (String) js.get("text");
+        task.deadline = (Date) js.get("deadline");
+        task.is_done = (Boolean) js.get("is_done");
+        task.tags = (ArrayList<String>) js.get("tags");
+        return task;
+    }
+
+
+}
