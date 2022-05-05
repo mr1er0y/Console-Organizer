@@ -14,37 +14,46 @@ import org.json.JSONObject;
 public class Tasks {
     public  ArrayList<Task> task_list;
 
-    public Tasks(int n) {
-        task_list = new ArrayList<Task>(n);
+    public Tasks() {
+        task_list = new ArrayList<Task>();
     }
 
-    public void add(String text){
-        task_list.add(new Task(text));
+    public void add(String text) {
+        task_list.add(new Task(text, task_list.size()));
     }
 
-    public void edit(String name, String option, String new_value) {
-        if (option.equals("name")) {
-            for (int i = 0; i < task_list.size(); i++) {
-                Task curr_task = task_list.get(i);
-                if (curr_task.text.equals(name)) {
-                    task_list.get(i).edit_name(new_value);
-                }
-            }
-        }
-
-        if (option.equals("deadline")) {
+    public void add(String text, String StringDate) {
+        SimpleDateFormat dateParser = new SimpleDateFormat("MM/dd/yy HH:mm");
+        {
             try {
-                Date deadline_date = new SimpleDateFormat("dd/MM/yyyy").parse(new_value);
-                for (int i = 0; i < task_list.size(); i++) {
-                    Task curr_task = task_list.get(i);
-                    if (curr_task.text.equals(name)) {
-                        task_list.get(i).edit_deadline(deadline_date);
-                    }
-                }
+                Date date = dateParser.parse(StringDate);
+                task_list.add(new Task(text, date, task_list.size()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void done(int Id) {
+        task_list.get(Id).done();
+    }
+
+    public void edit(int Id, String option, String new_value) {
+        if (option.equals("n")) {
+            task_list.get(Id).edit_name(new_value);
+        }
+        if (option.equals("d")) {
+            SimpleDateFormat dateParser = new SimpleDateFormat("MM/dd/yy HH:mm");
+            {
+                try {
+                    Date newDate = dateParser.parse(new_value);
+                    task_list.get(Id).edit_deadline(newDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     public void save(String filename) {
@@ -59,8 +68,8 @@ public class Tasks {
         return js;
     }
 
-    public void delete(String name) {
-            task_list.removeIf(task -> task.text.equals(name));
+    public void delete(int Id) {
+            task_list.remove(Id);
     }
 
     public void read(String filename){
