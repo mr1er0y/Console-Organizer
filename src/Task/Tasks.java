@@ -75,4 +75,50 @@ public class Tasks {
     public void read(String filename){
 //        save_file(String filename,  task_list);
     }
+
+    // Сортировка по метке 
+    public ArrayList<Task> tag_sort(String tag) {
+        res = new ArrayList<Task>();
+        for (int i = 0; i < task_list.size(); i++) {
+            if ((task_list.tags).contains(tag)) {
+                res.add(task_list[i]);
+            }
+        }
+        return task;
+    }
+
+    // Сортировка по дедлайну
+    public ArrayList<Task> deadline_sort(String tag) {
+        res = new ArrayList<Task>();
+
+        //  deepcopy
+        for (int i = 0; i < task_list.size(); i++) {
+            res.add(task_list[i]);
+        }
+
+        res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
+        return res;
+    }
+
+    // Список сделанных дел
+    public ArrayList<Task> done_sort(String tag) {
+        res = new ArrayList<Task>();
+        for (int i = 0; i < task_list.size(); i++) {
+            if (task_list.is_done) {
+                res.add(task_list[i]);
+            }
+        }
+        return task;
+    }
+
+    // Список несделанных дел 
+    public ArrayList<Task> not_done_sort(String tag) {
+        res = new ArrayList<Task>();
+        for (int i = 0; i < task_list.size(); i++) {
+            if (!task_list.is_done) {
+                res.add(task_list[i]);
+            }
+        }
+        return task;
+    }
 }
