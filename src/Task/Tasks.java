@@ -15,7 +15,7 @@ public class Tasks {
     public  ArrayList<Task> task_list;
 
     public Tasks() {
-        task_list = new ArrayList<Task>();
+        task_list = new ArrayList<>();
     }
 
     public void add(String text) {
@@ -61,7 +61,7 @@ public class Tasks {
         a.save_file(filename,  task_list);
     }
     public ArrayList<JSONObject> arr_json() {
-        ArrayList<JSONObject> js = new ArrayList<JSONObject>();
+        ArrayList<JSONObject> js = new ArrayList<>();
         for (Task el: task_list ) {
             js.add(el.SaveIntoJson());
         }
@@ -78,22 +78,22 @@ public class Tasks {
 
     // Сортировка по метке 
     public ArrayList<Task> tag_sort(String tag) {
-        res = new ArrayList<Task>();
+        ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
-            if ((task_list.tags).contains(tag)) {
-                res.add(task_list[i]);
+            if (task_list.contains(tag)) {
+                res.add(task_list.get(i));
             }
         }
-        return task;
+        return res;
     }
 
     // Сортировка по дедлайну
     public ArrayList<Task> deadline_sort(String tag) {
-        res = new ArrayList<Task>();
+        ArrayList<Task> res = new ArrayList<>();
 
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
-            res.add(task_list[i]);
+            res.add(task_list.get(i));
         }
 
         res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
@@ -102,23 +102,23 @@ public class Tasks {
 
     // Список сделанных дел
     public ArrayList<Task> done_sort(String tag) {
-        res = new ArrayList<Task>();
+        ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
-            if (task_list.is_done) {
-                res.add(task_list[i]);
+            if (task_list.get(i).is_done) {
+                res.add(task_list.get(i));
             }
         }
-        return task;
+        return res;
     }
 
     // Список несделанных дел 
     public ArrayList<Task> not_done_sort(String tag) {
-        res = new ArrayList<Task>();
+        ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
-            if (!task_list.is_done) {
-                res.add(task_list[i]);
+            if (!task_list.get(i).is_done) {
+                res.add(task_list.get(i));
             }
         }
-        return task;
+        return res;
     }
 }
