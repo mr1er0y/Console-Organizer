@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 
+import java.awt.geom.RectangularShape;
 import java.io.Console;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -31,8 +32,11 @@ public class Main {
 
     public static void main(final String[] arguments) throws FileNotFoundException {
         final Main main = CommandLine.populateCommand(new Main(), arguments);
-        Tasks task_man = new Tasks(5);
-        if (main.help) {
+
+        Tasks task_man = new Tasks();
+        if (main.help)
+        {
+
             CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
         }
         if (main.fileName != null) {
@@ -54,15 +58,33 @@ public class Main {
             input = input.trim();
             if (input.equals("add")) {
                 System.out.println("Write task");
-                input = sc.nextLine();
-                task_man.add(input);
-            }
-            if (input.equals("print")) {
-                System.out.println("Task | is_done");
-                for (Task task : task_man.task_list) {
-                    System.out.println(task.text);
+                String task_name = sc.nextLine();
+                out.println("Want to add a deadline? (y/n)");
+                String response = sc.nextLine();
+                if (response.equals("y")) {
+                    out.println("Write deadline in MM/dd/yyyy HH:mm  format");
+                    String stringDate = sc.nextLine();
+                    task_man.add(task_name, stringDate);
+                }
+                if (response.equals("n")) {
+                    task_man.add(task_name);
+                    out.println("Added task " + task_name);
                 }
             }
+
+            if (input.equals("done")) {
+                out.println("Write task Id");
+                int Id = Integer.parseInt(sc.nextLine());
+                task_man.done(Id);
+            }
+
+            if (input.equals("print")) {
+                System.out.println("Tasks:");
+                for (Task task : task_man.task_list) {
+                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                }
+            }
+
             if (input.equals("save")) {
                 System.out.println("Write file name");
                 String filename = sc.nextLine();
@@ -78,20 +100,23 @@ public class Main {
                 String filename = sc.nextLine();
                 task_man.read_json(filename);
             }
+
             if (input.equals("edit")) {
-                out.println("Write task name");
-                String task_to_edit = sc.nextLine();
-                out.println("Edit name or deadline?");
+                out.println("Write task Id");
+                int Id_to_edit = Integer.parseInt(sc.nextLine());
+                out.println("Edit name or deadline? (n/d)");
                 String option = sc.nextLine();
-                out.println("Write new value");
+                out.println("Write new value (if deadline, then write in MM/dd/yyyy HH:mm format)");
                 String new_value = sc.nextLine();
-                task_man.edit(task_to_edit, option, new_value);
+                task_man.edit(Id_to_edit, option, new_value);
             }
+
             if (input.equals("delete")) {
-                out.println("Enter task name");
-                String to_delete = sc.nextLine();
-                task_man.delete(to_delete);
+                out.println("Enter task Id");
+                int Id_to_delete = Integer.parseInt(sc.nextLine());
+                task_man.delete(Id_to_delete);
             }
+
             if (input.equals("help") || input.equals("h")) {
                 out.println("Option");
                 out.println("add: add your task");
@@ -100,6 +125,7 @@ public class Main {
                 out.println("print: output tasks in commandline");
                 out.println("save: save tasks in file format.txt");
             }
+
             console = System.console();
         }
         System.out.println("Console is null");
