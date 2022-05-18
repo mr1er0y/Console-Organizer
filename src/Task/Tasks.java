@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import Task.TaskFiles;
-import org.json.JSONObject;
 
 
 public class Tasks {
@@ -55,20 +54,14 @@ public class Tasks {
 
     public void save_json(String filename) {
         TaskFiles a = new TaskFiles();
-        a.save_json_file(filename,  arr_json());
+        a.save_gson_file(filename, task_list );
     }
 
     public void read_json(String filename) throws FileNotFoundException {
         TaskFiles a = new TaskFiles();
-        task_list = a.read_json_file(filename);
+        task_list = a.read_gson_file(filename);
     }
-    public ArrayList<JSONObject> arr_json() {
-        ArrayList<JSONObject> js = new ArrayList<JSONObject>();
-        for (Task el: task_list ) {
-            js.add(el.SaveIntoJson());
-        }
-        return js;
-    }
+
 
     public void delete(String name) {
             task_list.removeIf(task -> task.text.equals(name));

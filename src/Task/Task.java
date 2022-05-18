@@ -2,7 +2,7 @@ package Task;
 
 import java.util.ArrayList;
 import java.util.Date;
-import org.json.JSONObject;
+
 
 
 public class Task {
@@ -37,26 +37,5 @@ public class Task {
     public void done() {
         is_done = Boolean.TRUE;
     }
-
-    public JSONObject SaveIntoJson() {
-        JSONObject json = new JSONObject();
-
-        json.put("deadline", this.deadline);
-        json.put("text", this.text);
-        json.put("tags", this.tags);
-        json.put("is_done", this.is_done);
-
-        return json;
-    }
-
-    public Task parseTaskObject(JSONObject js) {
-        Task task = new Task();
-        task.text = (String) js.get("text");
-        task.deadline = (Date) js.get("deadline");
-        task.is_done = (Boolean) js.get("is_done");
-        task.tags = (ArrayList<String>) js.get("tags");
-        return task;
-    }
-
 
 }

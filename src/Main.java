@@ -1,5 +1,3 @@
-//package examples.dustin.commandline.picocli;
-
 import static java.lang.System.out;
 
 import picocli.CommandLine;
@@ -22,7 +20,7 @@ import Task.Tasks;
         description = "@|bold Demonstrating picocli |@",
         headerHeading = "@|bold,underline Demonstration Usage|@:%n%n")
 public class Main {
-    @Option(names = {"-f", "--file"}, description = "Path and name of file", required = true)
+    @Option(names = {"-f", "--file"}, description = "Path and name of file", required = false)
     private String fileName;
 
     @Option(names = {"-n", "--new file"}, description = "Create new file", required = false)
