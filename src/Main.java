@@ -1,5 +1,3 @@
-//package examples.dustin.commandline.picocli;
-
 import static java.lang.System.out;
 
 import picocli.CommandLine;
@@ -9,43 +7,45 @@ import picocli.CommandLine.Option;
 
 import java.awt.geom.RectangularShape;
 import java.io.Console;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import Task.Task;
 import Task.Tasks;
+
 /**
  * Demonstrate Java-based command-line processing with picocli.
  */
 @Command(
-        name="Main",
-        description="@|bold Demonstrating picocli |@",
-        headerHeading="@|bold,underline Demonstration Usage|@:%n%n")
-public class Main
-{
-    @Option(names={"-f", "--file"}, description="Path and name of file", required=true)
+        name = "Main",
+        description = "@|bold Demonstrating picocli |@",
+        headerHeading = "@|bold,underline Demonstration Usage|@:%n%n")
+public class Main {
+    @Option(names = {"-f", "--file"}, description = "Path and name of file", required = false)
     private String fileName;
 
-    @Option(names={"-n", "--newfile"}, description="Creat new file", required=false)
+    @Option(names = {"-n", "--new file"}, description = "Create new file", required = false)
     private String newfileName;
 
-    @Option(names={"-h", "--help"}, description="Display help/usage.", help=true)
+    @Option(names = {"-h", "--help"}, description = "Display help/usage.", help = true)
     boolean help;
 
-    public static void main(final String[] arguments)
-    {
+    public static void main(final String[] arguments) throws FileNotFoundException {
         final Main main = CommandLine.populateCommand(new Main(), arguments);
+
         Tasks task_man = new Tasks();
         if (main.help)
         {
+
             CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
         }
         if (main.fileName != null) {
-            out.println("Your file is: " + main.fileName );
+            out.println("Your file is: " + main.fileName);
 
 //            task_man.read(main.fileName);
         }
         if (main.newfileName != null) {
-            out.println("Your file is: " + main.newfileName );
+            out.println("Your file is: " + main.newfileName);
 //            task_man.read(main.new_fileName);
 
         }
@@ -55,6 +55,7 @@ public class Main
             Scanner sc = new Scanner(console.reader());
             System.out.println("Enter your command");
             String input = sc.nextLine();
+            input = input.trim();
             if (input.equals("add")) {
                 System.out.println("Write task");
                 String task_name = sc.nextLine();
@@ -86,8 +87,18 @@ public class Main
 
             if (input.equals("save")) {
                 System.out.println("Write file name");
-                String fname = sc.nextLine();
-                task_man.save(fname);
+                String filename = sc.nextLine();
+                task_man.save(filename);
+            }
+            if (input.equals("js")) {
+                System.out.println("Write file name");
+                String filename = sc.nextLine();
+                task_man.save_json(filename);
+            }
+            if (input.equals("read js")) {
+                System.out.println("Write file name");
+                String filename = sc.nextLine();
+                task_man.read_json(filename);
             }
 
             if (input.equals("edit")) {
@@ -104,6 +115,15 @@ public class Main
                 out.println("Enter task Id");
                 int Id_to_delete = Integer.parseInt(sc.nextLine());
                 task_man.delete(Id_to_delete);
+            }
+
+            if (input.equals("help") || input.equals("h")) {
+                out.println("Option");
+                out.println("add: add your task");
+                out.println("edit: edit your task");
+                out.println("delete: delete your task");
+                out.println("print: output tasks in commandline");
+                out.println("save: save tasks in file format.txt");
             }
 
             console = System.console();

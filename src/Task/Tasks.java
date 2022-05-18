@@ -2,13 +2,13 @@ package Task;
 
 import static java.lang.System.out;
 
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import Task.TaskFiles;
-import org.json.JSONObject;
 
 
 public class Tasks {
@@ -60,6 +60,19 @@ public class Tasks {
         TaskFiles a = new TaskFiles();
         a.save_file(filename,  task_list);
     }
+
+
+    public void save_json(String filename) {
+        TaskFiles a = new TaskFiles();
+        a.save_gson_file(filename, task_list );
+    }
+
+    public void read_json(String filename) throws FileNotFoundException {
+        TaskFiles a = new TaskFiles();
+        task_list = a.read_gson_file(filename);
+    }
+
+
     public ArrayList<JSONObject> arr_json() {
         ArrayList<JSONObject> js = new ArrayList<>();
         for (Task el: task_list ) {
@@ -121,4 +134,5 @@ public class Tasks {
         }
         return res;
     }
+
 }

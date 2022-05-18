@@ -3,7 +3,7 @@ package Task;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import org.json.JSONObject;
+
 
 
 public class Task {
@@ -18,6 +18,7 @@ public class Task {
         this.is_done = Boolean.FALSE;
         this.Id = Id;
     }
+
     public Task(String new_text, Date deadline, int Id) {
         this.text = new_text;
         this.deadline = deadline;
@@ -33,7 +34,8 @@ public class Task {
         deadline = new_deadline;
     }
 
-    public Task() { }
+    public Task() {
+    }
 
     public String isDone() {
         if (is_done) {
@@ -47,15 +49,4 @@ public class Task {
         is_done = Boolean.TRUE;
     }
 
-     public JSONObject SaveIntoJson() {
-        JSONObject json = new JSONObject();
-        
-        json.put("deadline", this.deadline);
-        json.put("text", this.text);
-        json.put("tags", this.tags);
-        json.put("is_done", this.is_done);
-
-        return json;
-    }
 }
-

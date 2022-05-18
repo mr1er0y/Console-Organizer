@@ -1,13 +1,21 @@
 package Task;
 
+import java.lang.reflect.Type;
 import java.nio.file.Path;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 
 import Task.Task;
-import org.json.JSONObject;
+
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.Gson;
+
 
 public class TaskFiles {
     public static void main(String[] args) {
@@ -42,17 +50,33 @@ public class TaskFiles {
         }
     }
 
-    public void save_jsfile(String filename, ArrayList<JSONObject> list_js) {
-        File file = new File(System.getProperty("user.dir") + File.separator + filename);
-        try (FileWriter myWriter = new FileWriter(file)) {
-            for (JSONObject el : list_js) {
-                myWriter.write(el.toString());
-            }
 
-//            System.out.println("Successfully wrote to the file.");
+
+    public void save_gson_file(String filename, ArrayList<Task> list_tasks) {
+        File file = new File(System.getProperty("user.dir") + File.separator + filename);
+        Gson gson = new Gson();
+        try (FileWriter myWriter = new FileWriter(file)) {
+            gson.toJson(list_tasks, myWriter);
+
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Task> read_gson_file(String filename)  {
+        Gson gson = new Gson();
+        ArrayList<Task> data = null;
+        Type AR_TYPE = new TypeToken<ArrayList<Task>>() {
+        }.getType();
+        try (FileReader myReader = new FileReader(filename)) {
+            JsonReader reader = new JsonReader(myReader);
+
+            data = gson.fromJson(reader, AR_TYPE);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return data;
     }
 }
