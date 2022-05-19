@@ -38,6 +38,8 @@ public class Tasks {
         task_list.get(Id).done();
     }
 
+    public void add_tag(int Id, String tag_name) {task_list.get(Id).add_tag(tag_name);}
+
     public void edit(int Id, String option, String new_value) {
         if (option.equals("n")) {
             task_list.get(Id).edit_name(new_value);
@@ -72,15 +74,6 @@ public class Tasks {
         task_list = a.read_gson_file(filename);
     }
 
-
-    public ArrayList<JSONObject> arr_json() {
-        ArrayList<JSONObject> js = new ArrayList<>();
-        for (Task el: task_list ) {
-            js.add(el.SaveIntoJson());
-        }
-        return js;
-    }
-
     public void delete(int Id) {
             task_list.remove(Id);
     }
@@ -89,11 +82,11 @@ public class Tasks {
 //        save_file(String filename,  task_list);
     }
 
-    // Сортировка по метке 
+    // Сортировка по метке
     public ArrayList<Task> tag_sort(String tag) {
         ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
-            if (task_list.contains(tag)) {
+            if (task_list.get(i).tags.contains(tag)) {
                 res.add(task_list.get(i));
             }
         }
@@ -101,7 +94,7 @@ public class Tasks {
     }
 
     // Сортировка по дедлайну
-    public ArrayList<Task> deadline_sort(String tag) {
+    public ArrayList<Task> deadline_sort() {
         ArrayList<Task> res = new ArrayList<>();
 
         //  deepcopy
@@ -114,7 +107,7 @@ public class Tasks {
     }
 
     // Список сделанных дел
-    public ArrayList<Task> done_sort(String tag) {
+    public ArrayList<Task> done_sort() {
         ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
             if (task_list.get(i).is_done) {
@@ -125,7 +118,7 @@ public class Tasks {
     }
 
     // Список несделанных дел 
-    public ArrayList<Task> not_done_sort(String tag) {
+    public ArrayList<Task> not_done_sort() {
         ArrayList<Task> res = new ArrayList<>();
         for (int i = 0; i < task_list.size(); i++) {
             if (!task_list.get(i).is_done) {

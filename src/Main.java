@@ -8,6 +8,7 @@ import picocli.CommandLine.Option;
 import java.awt.geom.RectangularShape;
 import java.io.Console;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Task.Task;
@@ -82,7 +83,39 @@ public class Main {
                 System.out.println("Tasks:");
                 for (Task task : task_man.task_list) {
                     System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                    out.println("tags: ");
+                    for (String tag : task.tags) {out.print(tag + " ");}
+                    out.println();
                 }
+            }
+
+            if (input.equals("sort")) {
+                out.println("Choose how to sort by (tag/deadline/done/not done)");
+                String sort_option = sc.nextLine();
+                ArrayList<Task> to_print = new ArrayList<>();
+                if (sort_option.equals("tag")) {
+                    out.println("Write tag name");
+                    String tag = sc.nextLine();
+                    to_print = task_man.tag_sort(tag);
+                }
+                if (sort_option.equals("deadline")) { to_print = task_man.deadline_sort(); }
+                if (sort_option.equals("done")) { to_print = task_man.done_sort(); }
+                if (sort_option.equals("not done")) { to_print = task_man.not_done_sort(); }
+                for (Task task : to_print) {
+                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                    out.println("tags: ");
+                    for (String t : task.tags) {out.print(t + " ");}
+                    out.println();
+                }
+            }
+
+            if (input.equals("add tag")) {
+                out.println("Write task ID");
+                int Id = Integer.parseInt(sc.nextLine());
+                out.println("Write tag name");
+                String tag_name = sc.nextLine();
+                task_man.add_tag(Id, tag_name);
+                out.println("Successfully added tag " + tag_name);
             }
 
             if (input.equals("save")) {
@@ -120,6 +153,7 @@ public class Main {
             if (input.equals("help") || input.equals("h")) {
                 out.println("Option");
                 out.println("add: add your task");
+                out.println("done: mark task as done");
                 out.println("edit: edit your task");
                 out.println("delete: delete your task");
                 out.println("print: output tasks in commandline");
