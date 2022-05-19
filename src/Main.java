@@ -5,13 +5,13 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 
-import java.awt.geom.RectangularShape;
 import java.io.Console;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import Task.Task;
+
 import Task.Tasks;
+import Task.*;
 
 /**
  * Demonstrate Java-based command-line processing with picocli.
@@ -34,10 +34,10 @@ public class Main {
         final Main main = CommandLine.populateCommand(new Main(), arguments);
 
         Tasks task_man = new Tasks();
-        if (main.help)
-        {
+        if (main.help) {
 
             CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
+        }
 
         Console console = System.console();
         Scanner sc = new Scanner(console.reader());
@@ -50,14 +50,14 @@ public class Main {
             main.fileName = input;
             task_man.read_json(main.fileName);
         }
-        if (main.newfileName != null) {
-            out.println("Your file is: " + main.newfileName);
-//            task_man.read(main.new_fileName);
-
+        if (main.newfileName == null || main.fileName == null) {
+            System.out.println("Write filename for new project");
+            task_man.temp_filename = sc.nextLine().trim();;
         }
 
+
         while (console != null) {
-            Scanner sc = new Scanner(console.reader());
+            sc = new Scanner(console.reader());
             System.out.println("Enter your command");
             String input = sc.nextLine();
             input = input.trim();
@@ -96,9 +96,7 @@ public class Main {
                 task_man.save(filename);
             }
             if (input.equals("js")) {
-                System.out.println("Write file name");
-                String filename = sc.nextLine();
-                task_man.save_json(filename);
+                task_man.save_json();
             }
             if (input.equals("read js")) {
                 System.out.println("Write file name");
@@ -135,6 +133,5 @@ public class Main {
         }
         System.out.println("Console is null");
     }
-
 }
 //java -cp $lib\:src src/Main.java -f=input.txt

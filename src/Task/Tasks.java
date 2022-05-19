@@ -8,14 +8,15 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
-import Task.TaskFiles;
+import Task.*;
 
 
 public class Tasks {
     public  ArrayList<Task> task_list;
+    public String temp_filename;
 
     public Tasks() {
-        task_list = new ArrayList<>();
+        task_list = new ArrayList<Task>();
     }
 
     public void add(String text) {
@@ -62,24 +63,17 @@ public class Tasks {
     }
 
 
-    public void save_json(String filename) {
+    public void save_json() {
         TaskFiles a = new TaskFiles();
-        a.save_gson_file(filename, task_list );
+        a.save_gson_file(temp_filename, task_list );
     }
 
     public void read_json(String filename) throws FileNotFoundException {
         TaskFiles a = new TaskFiles();
-        task_list = a.read_gson_file(filename);
+        task_list = a.read_gson_file(temp_filename);
     }
 
 
-    public ArrayList<JSONObject> arr_json() {
-        ArrayList<JSONObject> js = new ArrayList<>();
-        for (Task el: task_list ) {
-            js.add(el.SaveIntoJson());
-        }
-        return js;
-    }
 
     public void delete(int Id) {
             task_list.remove(Id);
