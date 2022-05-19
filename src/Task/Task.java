@@ -17,6 +17,7 @@ public class Task {
         this.text = new_text;
         this.is_done = Boolean.FALSE;
         this.Id = Id;
+        this.tags = new ArrayList<>();
     }
 
     public Task(String new_text, Date deadline, int Id) {
@@ -24,6 +25,7 @@ public class Task {
         this.deadline = deadline;
         this.is_done = Boolean.FALSE;
         this.Id = Id;
+        this.tags = new ArrayList<>();
     }
 
     public void edit_name(String new_name) {
@@ -42,6 +44,10 @@ public class Task {
             return "YES";
         }
         return "NO";
+    }
+
+    public void add_tag(String tag) {
+        this.tags.add(tag);
     }
 
 
