@@ -44,16 +44,17 @@ public class Main {
         Scanner sc = new Scanner(console.reader());
 
         if (main.fileName != null) {
-            out.println("Your file is: " + main.fileName);
-            System.out.println("Write the fileName");
-            String input = sc.nextLine();
-            input = input.trim();
-            main.fileName = input;
+            task_man.temp_filename = main.fileName;
             task_man.read_json(main.fileName);
         }
-        if (main.newfileName == null || main.fileName == null) {
+
+        if (main.newfileName != null) {
+            task_man.temp_filename = main.newfileName;
+        }
+
+        if (main.newfileName == null && main.fileName == null) {
             System.out.println("Write filename for new project");
-            task_man.temp_filename = sc.nextLine().trim();;
+            task_man.temp_filename = sc.nextLine().trim();
         }
 
 
