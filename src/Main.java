@@ -38,18 +38,23 @@ public class Main {
         {
 
             CommandLine.usage(main, out, CommandLine.Help.Ansi.AUTO);
-        }
+
+        Console console = System.console();
+        Scanner sc = new Scanner(console.reader());
+
         if (main.fileName != null) {
             out.println("Your file is: " + main.fileName);
-
-//            task_man.read(main.fileName);
+            System.out.println("Write the fileName");
+            String input = sc.nextLine();
+            input = input.trim();
+            main.fileName = input;
+            task_man.read_json(main.fileName);
         }
         if (main.newfileName != null) {
             out.println("Your file is: " + main.newfileName);
 //            task_man.read(main.new_fileName);
 
         }
-        Console console = System.console();
 
         while (console != null) {
             Scanner sc = new Scanner(console.reader());
