@@ -8,15 +8,14 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
-import Task.*;
 
 
 public class Tasks {
-    public  ArrayList<Task> task_list;
+    public ArrayList<Task> task_list;
     public String temp_filename;
 
     public Tasks() {
-        task_list = new ArrayList<Task>();
+        task_list = new ArrayList<>();
     }
 
     public void add(String text) {

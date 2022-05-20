@@ -14,29 +14,45 @@ public class Task {
     public Boolean is_done;
 
     public Task(String new_text, int Id) {
-        this.text = new_text;
-        this.is_done = Boolean.FALSE;
         this.Id = Id;
+        this.text = new_text;
         this.tags = new ArrayList<>();
+        this.is_done = Boolean.FALSE;
     }
 
     public Task(String new_text, Date deadline, int Id) {
-        this.text = new_text;
-        this.deadline = deadline;
-        this.is_done = Boolean.FALSE;
         this.Id = Id;
+        this.deadline = deadline;
+        this.text = new_text;
         this.tags = new ArrayList<>();
+        this.is_done = Boolean.FALSE;
     }
 
     public void edit_name(String new_name) {
-        text = new_name;
+        this.text = new_name;
     }
 
     public void edit_deadline(Date new_deadline) {
-        deadline = new_deadline;
+        this.deadline = new_deadline;
     }
 
     public Task() {
+    }
+
+    public int getId() {
+        return this.Id;
+    }
+
+    public Date getDeadline() {
+        return this.deadline;
+    }
+
+    public String getName() {
+        return this.text;
+    }
+
+    public ArrayList<String> getTags() {
+        return this.tags;
     }
 
     public String isDone() {
@@ -52,7 +68,7 @@ public class Task {
 
 
     public void done() {
-        is_done = Boolean.TRUE;
+        this.is_done = Boolean.TRUE;
     }
 
 }
