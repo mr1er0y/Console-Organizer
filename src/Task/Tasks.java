@@ -84,7 +84,6 @@ public class Tasks {
 
     // Сортировка по метке
     public void tag_sort(String tag) {
-        ArrayList<Task> res = new ArrayList<>();
         for (Task task : task_list) {
             if (task.tags.contains(tag)) {
                 System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
@@ -113,7 +112,6 @@ public class Tasks {
 
     // Список сделанных дел
     public void done_sort() {
-        ArrayList<Task> res = new ArrayList<>();
         for (Task task : task_list) {
             if (task.get(i).is_done) {
                 System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
@@ -124,9 +122,20 @@ public class Tasks {
         }
     }
 
+    // Сортировка по выбранному приоритету 
+    public void done_sort(int priopity) {
+        for (Task task : task_list) {
+            if (task.get(i).priopity == priopity) {
+                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                out.println("tags: ");
+                for (String t : task.tags) { out.print(t + " "); }
+                out.println();
+            }
+        }
+    }
+
     // Список несделанных дел 
     public void not_done_sort() {
-        ArrayList<Task> res = new ArrayList<>();
         for (Task task : task_list) {
             if (!task.is_done) {
                 System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());

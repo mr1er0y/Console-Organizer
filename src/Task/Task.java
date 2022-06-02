@@ -21,13 +21,13 @@ public class Task {
         this.priopity = 0;
     }
 
-    public Task(String new_text, Date deadline, int Id) {
+    public Task(String new_text, Date deadline, int Id, int priority) {
         this.Id = Id;
         this.deadline = deadline;
         this.text = new_text;
         this.tags = new ArrayList<>();
         this.is_done = Boolean.FALSE;
-        this.priopity = 0;
+        this.priority = priority;
     }
 
     public void edit_name(String new_name) {
