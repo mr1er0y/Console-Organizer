@@ -83,49 +83,67 @@ public class Tasks {
     }
 
     // Сортировка по метке
-    public ArrayList<Task> tag_sort(String tag) {
-        ArrayList<Task> res = new ArrayList<>();
-        for (int i = 0; i < task_list.size(); i++) {
-            if (task_list.get(i).tags.contains(tag)) {
-                res.add(task_list.get(i));
+    public void tag_sort(String tag) {
+        for (Task task : task_list) {
+            if (task.tags.contains(tag)) {
+                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                out.println("tags: ");
+                for (String t : task.tags) { out.print(t + " "); }
+                out.println(); 
             }
         }
-        return res;
     }
 
     // Сортировка по дедлайну
-    public ArrayList<Task> deadline_sort() {
+    public void deadline_sort() {
         ArrayList<Task> res = new ArrayList<>();
-
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
             res.add(task_list.get(i));
         }
-
         res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
-        return res;
+        for (Task task : task_list) {
+            System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+            out.println("tags: ");
+            for (String t : task.tags) { out.print(t + " "); }
+            out.println();
+        }
     }
 
     // Список сделанных дел
-    public ArrayList<Task> done_sort() {
-        ArrayList<Task> res = new ArrayList<>();
-        for (int i = 0; i < task_list.size(); i++) {
-            if (task_list.get(i).is_done) {
-                res.add(task_list.get(i));
+    public void done_sort() {
+        for (Task task : task_list) {
+            if (task.get(i).is_done) {
+                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                out.println("tags: ");
+                for (String t : task.tags) { out.print(t + " "); }
+                out.println();
             }
         }
-        return res;
+    }
+
+    // Сортировка по выбранному приоритету 
+    public void done_sort(int priopity) {
+        for (Task task : task_list) {
+            if (task.get(i).priopity == priopity) {
+                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                out.println("tags: ");
+                for (String t : task.tags) { out.print(t + " "); }
+                out.println();
+            }
+        }
     }
 
     // Список несделанных дел 
-    public ArrayList<Task> not_done_sort() {
-        ArrayList<Task> res = new ArrayList<>();
-        for (int i = 0; i < task_list.size(); i++) {
-            if (!task_list.get(i).is_done) {
-                res.add(task_list.get(i));
+    public void not_done_sort() {
+        for (Task task : task_list) {
+            if (!task.is_done) {
+                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                out.println("tags: ");
+                for (String t : task.tags) { out.print(t + " "); }
+                out.println();
             }
         }
-        return res;
     }
 
 }
