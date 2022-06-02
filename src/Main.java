@@ -104,12 +104,14 @@ public class Main {
                     String tag = sc.nextLine();
                     to_print = task_man.tag_sort(tag);
                 }
-                if (sort_option.equals("deadline")) { task_man.deadline_sort(); }
-                if (sort_option.equals("done")) { task_man.done_sort(); }
-                if (sort_option.equals("not done")) { task_man.not_done_sort(); }
+                if (sort_option.equals("deadline")) { to_print = task_man.deadline_sort(); }
+                if (sort_option.equals("done")) { to_print = task_man.done_sort(); }
+                if (sort_option.equals("not done")) { to_print = task_man.not_done_sort(); }
                 for (Task task : to_print) {
-                    
-                    
+                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                    out.println("tags: ");
+                    for (String t : task.tags) {out.print(t + " ");}
+                    out.println();
                 }
             }
 
