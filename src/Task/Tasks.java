@@ -124,8 +124,9 @@ public class Tasks {
             if (!task_list.get(i).is_done) {
                 res.add(task_list.get(i));
             }
+
         }
         return res;
-    }
 
+    }
 }
