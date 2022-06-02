@@ -18,6 +18,7 @@ public class Task {
         this.text = new_text;
         this.tags = new ArrayList<>();
         this.is_done = Boolean.FALSE;
+        this.priopity = 0;
     }
 
     public Task(String new_text, Date deadline, int Id) {
@@ -26,6 +27,7 @@ public class Task {
         this.text = new_text;
         this.tags = new ArrayList<>();
         this.is_done = Boolean.FALSE;
+        this.priopity = 0;
     }
 
     public void edit_name(String new_name) {
