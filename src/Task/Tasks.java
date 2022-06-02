@@ -143,7 +143,6 @@ public class Tasks {
                 for (String t : task.tags) { out.print(t + " "); }
                 out.println();
             }
-        }
+        } 
     }
-
 }
