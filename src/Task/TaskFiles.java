@@ -35,7 +35,7 @@ public class TaskFiles {
     }
 
 
-    public void save_file(String filename, ArrayList<Task> list_tasks) {
+    public void saveFile(String filename, List<Task> list_tasks) {
         File file = new File(System.getProperty("user.dir") + File.separator + filename);
         try (FileWriter myWriter = new FileWriter(file)) {
 
@@ -52,7 +52,7 @@ public class TaskFiles {
 
 
 
-    public void save_gson_file(String filename, ArrayList<Task> list_tasks) {
+    public void save_gson_file(String filename, List<Task> list_tasks) {
         File file = new File(System.getProperty("user.dir") + File.separator + filename);
         Gson gson = new Gson();
         try (FileWriter myWriter = new FileWriter(file)) {
@@ -64,10 +64,10 @@ public class TaskFiles {
         }
     }
 
-    public ArrayList<Task> read_gson_file(String filename)  {
+    public List<Task> read_gson_file(String filename)  {
         Gson gson = new Gson();
-        ArrayList<Task> data = null;
-        Type AR_TYPE = new TypeToken<ArrayList<Task>>() {
+        List<Task> data = null;
+        Type AR_TYPE = new TypeToken<List<Task>>() {
         }.getType();
         try (FileReader myReader = new FileReader(filename)) {
             JsonReader reader = new JsonReader(myReader);

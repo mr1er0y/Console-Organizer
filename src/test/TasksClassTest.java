@@ -20,7 +20,7 @@ public class TasksClassTest {
         myTasks.add("ThirdTask");
         myTasks.done(0);
         myTasks.done(2);
-        assertEquals(2, myTasks.done_sort().size());
+        assertEquals(2, myTasks.doneSort().size());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class TasksClassTest {
         myTasks.add("ThirdTask");
         myTasks.done(0);
         myTasks.done(2);
-        assertEquals(1, myTasks.not_done_sort().size());
+        assertEquals(1, myTasks.notDoneSort().size());
     }
 
     @Test
@@ -43,9 +43,9 @@ public class TasksClassTest {
         myTasks.add("SecondTask", SecondTaskDeadline);
         String ThirdTaskDeadline = "01/05/15 14:14";
         myTasks.add("ThirdTask", ThirdTaskDeadline);
-        assertEquals("SecondTask", myTasks.deadline_sort().get(0).getName());
-        assertEquals("ThirdTask", myTasks.deadline_sort().get(1).getName());
-        assertEquals("FirstTask", myTasks.deadline_sort().get(2).getName());
+        assertEquals("SecondTask", myTasks.deadlineSort().get(0).getName());
+        assertEquals("ThirdTask", myTasks.deadlineSort().get(1).getName());
+        assertEquals("FirstTask", myTasks.deadlineSort().get(2).getName());
     }
 
     @Test
@@ -53,19 +53,19 @@ public class TasksClassTest {
         Tasks myTasks = new Tasks();
         String firstTag = "Today", secondTag = "Tomorrow", ThirdTag = "Food";
         myTasks.add("FirstTask");
-        myTasks.add_tag(0, "Today");
-        myTasks.add_tag(0, "Food");
+        myTasks.addTag(0, "Today");
+        myTasks.addTag(0, "Food");
         myTasks.add("SecondTask");
-        myTasks.add_tag(1, "Today");
-        myTasks.add_tag(1, "Food");
+        myTasks.addTag(1, "Today");
+        myTasks.addTag(1, "Food");
         myTasks.add("ThirdTask");
-        myTasks.add_tag(2, "Tomorrow");
+        myTasks.addTag(2, "Tomorrow");
         myTasks.add("FourthTask");
-        myTasks.add_tag(3, "Tomorrow");
-        myTasks.add_tag(3, "Food");
-        assertEquals(2, myTasks.tag_sort("Today").size());
-        assertEquals(2, myTasks.tag_sort("Tomorrow").size());
-        assertEquals(3, myTasks.tag_sort("Food").size());
+        myTasks.addTag(3, "Tomorrow");
+        myTasks.addTag(3, "Food");
+        assertEquals(2, myTasks.tagSort("Today").size());
+        assertEquals(2, myTasks.tagSort("Tomorrow").size());
+        assertEquals(3, myTasks.tagSort("Food").size());
     }
 
     @Test
@@ -73,11 +73,11 @@ public class TasksClassTest {
         Tasks myTasks = new Tasks();
         myTasks.add("FirstTask");
         myTasks.add("SecondTask");
-        assertEquals(2, myTasks.not_done_sort().size());
+        assertEquals(2, myTasks.notDoneSort().size());
         myTasks.delete(1);
-        assertEquals(1, myTasks.not_done_sort().size());
+        assertEquals(1, myTasks.notDoneSort().size());
         myTasks.delete(0);
-        assertEquals(0, myTasks.not_done_sort().size());
+        assertEquals(0, myTasks.notDoneSort().size());
     }
 
     @Test
@@ -89,18 +89,18 @@ public class TasksClassTest {
         myTasks.add("SecondTask", SecondTaskDeadline);
         String ThirdTaskDeadline = "02/05/15 14:14";
         myTasks.add("ThirdTask", ThirdTaskDeadline);
-        assertEquals("SecondTask", myTasks.deadline_sort().get(0).getName());
-        assertEquals("ThirdTask", myTasks.deadline_sort().get(1).getName());
-        assertEquals("FirstTask", myTasks.deadline_sort().get(2).getName());
+        assertEquals("SecondTask", myTasks.deadlineSort().get(0).getName());
+        assertEquals("ThirdTask", myTasks.deadlineSort().get(1).getName());
+        assertEquals("FirstTask", myTasks.deadlineSort().get(2).getName());
         myTasks.edit(1, "d", ThirdTaskDeadline);
         myTasks.edit(2, "d", SecondTaskDeadline);
-        assertEquals("ThirdTask", myTasks.deadline_sort().get(0).getName());
-        assertEquals("SecondTask", myTasks.deadline_sort().get(1).getName());
-        assertEquals("FirstTask", myTasks.deadline_sort().get(2).getName());
+        assertEquals("ThirdTask", myTasks.deadlineSort().get(0).getName());
+        assertEquals("SecondTask", myTasks.deadlineSort().get(1).getName());
+        assertEquals("FirstTask", myTasks.deadlineSort().get(2).getName());
         myTasks.edit(1, "n", "ThirdTask");
         myTasks.edit(2, "n", "SecondTask");
-        assertEquals("SecondTask", myTasks.deadline_sort().get(0).getName());
-        assertEquals("ThirdTask", myTasks.deadline_sort().get(1).getName());
-        assertEquals("FirstTask", myTasks.deadline_sort().get(2).getName());
+        assertEquals("SecondTask", myTasks.deadlineSort().get(0).getName());
+        assertEquals("ThirdTask", myTasks.deadlineSort().get(1).getName());
+        assertEquals("FirstTask", myTasks.deadlineSort().get(2).getName());
     }
 }

@@ -44,17 +44,17 @@ public class Main {
         Scanner sc = new Scanner(console.reader());
 
         if (main.fileName != null) {
-            task_man.temp_filename = main.fileName;
-            task_man.read_json(main.fileName);
+            task_man.setTempFilename(main.fileName);
+            task_man.readJson(main.fileName);
         }
 
         if (main.newfileName != null) {
-            task_man.temp_filename = main.newfileName;
+            task_man.setTempFilename(main.newfileName);
         }
 
         if (main.newfileName == null && main.fileName == null) {
             System.out.println("Write filename for new project");
-            task_man.temp_filename = sc.nextLine().trim();
+            task_man.setTempFilename(sc.nextLine().trim());
         }
 
 
@@ -88,9 +88,9 @@ public class Main {
             if (input.equals("print")) {
                 System.out.println("Tasks:");
                 for (Task task : task_man.task_list) {
-                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                    System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                     out.println("tags: ");
-                    for (String tag : task.tags) {out.print(tag + " ");}
+                    for (String tag : task.getTags()) {out.print(tag + " ");}
                     out.println();
                 }
             }
@@ -98,20 +98,21 @@ public class Main {
             if (input.equals("sort")) {
                 out.println("Choose how to sort by (tag/deadline/done/not done)");
                 String sort_option = sc.nextLine();
-                ArrayList<Task> to_print = new ArrayList<>();
+                List<Task> to_print = new ArrayList<>();
                 if (sort_option.equals("tag")) {
                     out.println("Write tag name");
                     String tag = sc.nextLine();
-                    to_print = task_man.tag_sort(tag);
+                    to_print = task_man.tagSort(tag);
                 }
-                if (sort_option.equals("deadline")) { to_print = task_man.deadline_sort(); }
-                if (sort_option.equals("done")) { to_print = task_man.done_sort(); }
-                if (sort_option.equals("not done")) { to_print = task_man.not_done_sort(); }
-                for (Task task : to_print) {
-                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
-                    out.println("tags: ");
-                    for (String t : task.tags) {out.print(t + " ");}
-                    out.println();
+
+                if (sort_option.equals("deadline")) { task_man.deadlineSort(); }
+                if (sort_option.equals("done")) { task_man.doneSort(); }
+                if (sort_option.equals("not done")) { task_man.notDoneSort(); }
+                if (sort_option.equals("priority")) { 
+                    out.println("Write prioptity (-1, 0 or 1)");
+                    String tag = sc.nextLine();
+                    task_man.priopity_sort(sc); 
+
                 }
             }
 
@@ -120,7 +121,7 @@ public class Main {
                 int Id = Integer.parseInt(sc.nextLine());
                 out.println("Write tag name");
                 String tag_name = sc.nextLine();
-                task_man.add_tag(Id, tag_name);
+                task_man.addTag(Id, tag_name);
                 out.println("Successfully added tag " + tag_name);
             }
 
@@ -130,12 +131,12 @@ public class Main {
                 task_man.save(filename);
             }
             if (input.equals("js")) {
-                task_man.save_json();
+                task_man.saveJson();
             }
             if (input.equals("read js")) {
                 System.out.println("Write file name");
                 String filename = sc.nextLine();
-                task_man.read_json(filename);
+                task_man.readJson(filename);
             }
 
             if (input.equals("edit")) {

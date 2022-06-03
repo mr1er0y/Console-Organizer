@@ -1,59 +1,94 @@
 package Task;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
+public final class Task {
+    private final int Id;
+    private Date deadline;
+    private final String text;
+    private HashSet<String> tags;
+    private Boolean is_done;
+    private int priority;
 
-
-public class Task {
-    public int Id;
-    public Date deadline;
-    public String text;
-    public ArrayList<String> tags;
-    public Boolean is_done;
-    public int priopity;
-
-    public Task(String new_text, int Id) {
+    public Task(String new_text, int Id, Date deadline, int priority) {
         this.Id = Id;
         this.text = new_text;
-        this.tags = new ArrayList<>();
+        this.deadline = deadline;
+        this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
+
+        this.priority = 0;
+
     }
 
     public Task(String new_text, Date deadline, int Id) {
         this.Id = Id;
-        this.deadline = deadline;
         this.text = new_text;
-        this.tags = new ArrayList<>();
+        this.deadline = deadline;
+        this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
     }
 
-    public void edit_name(String new_name) {
-        this.text = new_name;
-    }
-
-    public void edit_deadline(Date new_deadline) {
-        this.deadline = new_deadline;
-    }
-
-    public Task() {
-    }
-
     public int getId() {
-        return this.Id;
+        return Id;
+    }
+
+    public void setId(int new_id) {
+        Id = new_id;
     }
 
     public Date getDeadline() {
-        return this.deadline;
+        return deadline;
     }
 
-    public String getName() {
-        return this.text;
+    public void setDeadline(Date new_deadline) {
+        deadline = new_deadline;
+    }
+    
+    public String getText() {
+        return text;
     }
 
-    public ArrayList<String> getTags() {
-        return this.tags;
+    public void setText(String new_text) {
+        text = new_text;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void getTags(Set<String> new_tags) {
+        tags = new_tags;
+    }
+
+    public Boolean getIsDone() {
+        return is_done;
+    }
+
+    public void setIsDone(Boolean new_is_done) {
+        is_done = new_is_done;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int new_priority) {
+        priority = new_priority;
+    }
+
+
+    public void editName(String new_name) {
+        this.text = new_name;
+    }
+
+    public void editDeadline(Date new_deadline) {
+        this.deadline = new_deadline;
+    }
+
+    public Task(int id) {
+        Id = id;
     }
 
     public String isDone() {
@@ -63,7 +98,7 @@ public class Task {
         return "NO";
     }
 
-    public void add_tag(String tag) {
+    public void addTag(String tag) {
         this.tags.add(tag);
     }
 
