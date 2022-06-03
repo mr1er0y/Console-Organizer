@@ -12,6 +12,7 @@ public class Task {
     public String text;
     public ArrayList<String> tags;
     public Boolean is_done;
+    public int priopity;
 
     public Task(String new_text, int Id) {
         this.Id = Id;
