@@ -110,9 +110,9 @@ public class Main {
                 if (sort_option.equals("done")) { task_man.doneSort(); }
                 if (sort_option.equals("not done")) { task_man.notDoneSort(); }
                 if (sort_option.equals("priority")) { 
-                    out.println("Write prioptity (-1, 0 or 1)");
+                    out.println("Write priority (-1, 0 or 1)");
                     String num = sc.nextLine();
-                    task_man.priopity_sort(Integer.parseInt(num));
+                    task_man.priority_sort(Integer.parseInt(num));
 
                 }
             }

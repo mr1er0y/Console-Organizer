@@ -125,19 +125,22 @@ public class Tasks {
     }
 
     // Список сделанных дел
-    public void doneSort() {
+    public int doneSort() {
+        int count = 0;
         for (Task task : task_list) {
-            if (task.isDone() == "Yes") {
+            if (task.isDone() == "YES") {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
                 out.println("tags: ");
                 for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
+                ++count;
             }
         }
+        return count;
     }
 
     // Сортировка по выбранному приоритету 
-    public void priopity_sort(int priority) {
+    public void priority_sort(int priority) {
         for (Task task : task_list) {
             if (task.getPriority() == priority) {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
@@ -151,16 +154,17 @@ public class Tasks {
 
     // Список несделанных дел 
 
-    public void notDoneSort() {
+    public int notDoneSort() {
+        int count = 0;
         for (Task task : task_list) {
-            if (task.isDone() == "No") {
+            if (task.isDone() == "NO") {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
                 out.println("tags: ");
                 for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
-
+                ++count;
             }
-
         }
+        return count;
     }
 }

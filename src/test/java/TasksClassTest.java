@@ -14,24 +14,24 @@ public class TasksClassTest {
 
     @Test
     public void doneSort() {
-//        Tasks myTasks = new Tasks();
-//        myTasks.add("FirstTask");
-//        myTasks.add("SecondTask");
-//        myTasks.add("ThirdTask");
-//        myTasks.done(0);
-//        myTasks.done(2);
-//        assertEquals(2, myTasks.doneSort().size());
+          Tasks myTasks = new Tasks();
+          myTasks.add("FirstTask");
+          myTasks.add("SecondTask");
+          myTasks.add("ThirdTask");
+          myTasks.done(0);
+          myTasks.done(2);
+          assertEquals(2, myTasks.doneSort());
     }
 
     @Test
     public void notDoneSort() {
-//        Tasks myTasks = new Tasks();
-//        myTasks.add("FirstTask");
-//        myTasks.add("SecondTask");
-//        myTasks.add("ThirdTask");
-//        myTasks.done(0);
-//        myTasks.done(2);
-//        assertEquals(1, myTasks.notDoneSort().size());
+          Tasks myTasks = new Tasks();
+          myTasks.add("FirstTask");
+          myTasks.add("SecondTask");
+          myTasks.add("ThirdTask");
+          myTasks.done(0);
+          myTasks.done(2);
+          assertEquals(1, myTasks.notDoneSort());
     }
 
     @Test
