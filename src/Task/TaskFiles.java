@@ -35,7 +35,7 @@ public class TaskFiles {
     }
 
 
-    public void save_file(String filename, List<Task> list_tasks) {
+    public void saveFile(String filename, List<Task> list_tasks) {
         File file = new File(System.getProperty("user.dir") + File.separator + filename);
         try (FileWriter myWriter = new FileWriter(file)) {
 

@@ -18,11 +18,11 @@ public class Tasks {
         task_list = new ArrayList<>();
     }
 
-    public String get_temp_filename() {
+    public String getTempFilename() {
         return temp_filename;
     }
 
-    public void set_temp_filename(String new_name) {
+    public void setTempFilename(String new_name) {
         temp_filename = new_name;
     }
 
@@ -68,16 +68,16 @@ public class Tasks {
 
     public void save(String filename) {
         TaskFiles a = new TaskFiles();
-        a.save_file(filename,  task_list);
+        a.saveFile(filename,  task_list);
     }
 
 
-    public void save_json() {
+    public void saveJson() {
         TaskFiles a = new TaskFiles();
         a.save_gson_file(temp_filename, task_list );
     }
 
-    public void read_json(String filename) throws FileNotFoundException {
+    public void readJson(String filename) throws FileNotFoundException {
         TaskFiles a = new TaskFiles();
         task_list = a.read_gson_file(temp_filename);
     }
@@ -91,7 +91,7 @@ public class Tasks {
     }
 
     // Сортировка по метке
-    public void tag_sort(String tag) {
+    public void tagSort(String tag) {
         for (Task task : task_list) {
             if (task.getTags().contains(tag)) {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
@@ -103,7 +103,7 @@ public class Tasks {
     }
 
     // Сортировка по дедлайну
-    public void deadline_sort() {
+    public void deadlineSort() {
         List<Task> res = new ArrayList<>();
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
@@ -119,7 +119,7 @@ public class Tasks {
     }
 
     // Список сделанных дел
-    public void done_sort() {
+    public void doneSort() {
         for (Task task : task_list) {
             if (task.is_done) {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
@@ -143,7 +143,7 @@ public class Tasks {
     }
 
     // Список несделанных дел 
-    public void not_done_sort() {
+    public void notDoneSort() {
         for (Task task : task_list) {
             if (!task.is_done) {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
