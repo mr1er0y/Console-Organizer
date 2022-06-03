@@ -44,17 +44,17 @@ public class Main {
         Scanner sc = new Scanner(console.reader());
 
         if (main.fileName != null) {
-            task_man.temp_filename = main.fileName;
+            task_man.set_temp_filename(main.fileName);
             task_man.read_json(main.fileName);
         }
 
         if (main.newfileName != null) {
-            task_man.temp_filename = main.newfileName;
+            task_man.set_temp_filename(main.newfileName);
         }
 
         if (main.newfileName == null && main.fileName == null) {
             System.out.println("Write filename for new project");
-            task_man.temp_filename = sc.nextLine().trim();
+            task_man.set_temp_filename(sc.nextLine().trim());
         }
 
 
@@ -88,9 +88,9 @@ public class Main {
             if (input.equals("print")) {
                 System.out.println("Tasks:");
                 for (Task task : task_man.task_list) {
-                    System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                    System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                     out.println("tags: ");
-                    for (String tag : task.tags) {out.print(tag + " ");}
+                    for (String tag : task.getTags()) {out.print(tag + " ");}
                     out.println();
                 }
             }
@@ -98,7 +98,7 @@ public class Main {
             if (input.equals("sort")) {
                 out.println("Choose how to sort by (tag/deadline/done/not done)");
                 String sort_option = sc.nextLine();
-                ArrayList<Task> to_print = new ArrayList<>();
+                List<Task> to_print = new ArrayList<>();
                 if (sort_option.equals("tag")) {
                     out.println("Write tag name");
                     String tag = sc.nextLine();
@@ -107,9 +107,10 @@ public class Main {
                 if (sort_option.equals("deadline")) { task_man.deadline_sort(); }
                 if (sort_option.equals("done")) { task_man.done_sort(); }
                 if (sort_option.equals("not done")) { task_man.not_done_sort(); }
-                for (Task task : to_print) {
-                    
-                    
+                if (sort_option.equals("priority")) { 
+                    out.println("Write prioptity (-1, 0 or 1)");
+                    String tag = sc.nextLine();
+                    task_man.priopity_sort(sc); 
                 }
             }
 

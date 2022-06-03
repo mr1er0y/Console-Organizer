@@ -11,11 +11,19 @@ import java.util.ArrayList;
 
 
 public class Tasks {
-    public ArrayList<Task> task_list;
-    public String temp_filename;
+    public List<Task> task_list;
+    private String temp_filename;
 
     public Tasks() {
         task_list = new ArrayList<>();
+    }
+
+    public String get_temp_filename() {
+        return temp_filename;
+    }
+
+    public void set_temp_filename(String new_name) {
+        temp_filename = new_name;
     }
 
     public void add(String text) {
@@ -85,10 +93,10 @@ public class Tasks {
     // Сортировка по метке
     public void tag_sort(String tag) {
         for (Task task : task_list) {
-            if (task.tags.contains(tag)) {
-                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+            if (task.getTags().contains(tag)) {
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                 out.println("tags: ");
-                for (String t : task.tags) { out.print(t + " "); }
+                for (String t : task.getTags()) { out.print(t + " "); }
                 out.println(); 
             }
         }
@@ -96,16 +104,16 @@ public class Tasks {
 
     // Сортировка по дедлайну
     public void deadline_sort() {
-        ArrayList<Task> res = new ArrayList<>();
+        List<Task> res = new ArrayList<>();
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
             res.add(task_list.get(i));
         }
         res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
         for (Task task : task_list) {
-            System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+            System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
             out.println("tags: ");
-            for (String t : task.tags) { out.print(t + " "); }
+            for (String t : task.getTags()) { out.print(t + " "); }
             out.println();
         }
     }
@@ -114,21 +122,21 @@ public class Tasks {
     public void done_sort() {
         for (Task task : task_list) {
             if (task.is_done) {
-                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                 out.println("tags: ");
-                for (String t : task.tags) { out.print(t + " "); }
+                for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
             }
         }
     }
 
     // Сортировка по выбранному приоритету 
-    public void done_sort(int priority) {
+    public void priopity_sort(int priority) {
         for (Task task : task_list) {
             if (task.priority == priority) {
-                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                 out.println("tags: ");
-                for (String t : task.tags) { out.print(t + " "); }
+                for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
             }
         }
@@ -138,9 +146,9 @@ public class Tasks {
     public void not_done_sort() {
         for (Task task : task_list) {
             if (!task.is_done) {
-                System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
                 out.println("tags: ");
-                for (String t : task.tags) { out.print(t + " "); }
+                for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
             }
         }

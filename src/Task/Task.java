@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.HashSet;
 
 public final class Task {
-    public int Id;
-    public Date deadline;
-    public String text;
-    public HashSet<String> tags;
-    public Boolean is_done;
-    public int priority;
+    private final int Id;
+    private Date deadline;
+    private final String text;
+    private HashSet<String> tags;
+    private Boolean is_done;
+    private int priority;
 
-    public Task(String new_text, int Id, Date deadline) {
+    public Task(String new_text, int Id, Date deadline, int priority) {
         this.Id = Id;
         this.text = new_text;
         this.deadline = deadline;
@@ -29,6 +29,54 @@ public final class Task {
         this.priority = priority;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int new_id) {
+        Id = new_id;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date new_deadline) {
+        deadline = new_deadline;
+    }
+    
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String new_text) {
+        text = new_text;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void getTags(Set<String> new_tags) {
+        tags = new_tags;
+    }
+
+    public Boolean getIsDone() {
+        return is_done;
+    }
+
+    public void setIsDone(Boolean new_is_done) {
+        is_done = new_is_done;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int new_priority) {
+        priority = new_priority;
+    }
+
 
     public void editName(String new_name) {
         this.text = new_name;
@@ -40,22 +88,6 @@ public final class Task {
 
     public Task(int id) {
         Id = id;
-    }
-
-    public int getId() {
-        return this.Id;
-    }
-
-    public Date getDeadline() {
-        return this.deadline;
-    }
-
-    public String getName() {
-        return this.text;
-    }
-
-    public HashSet<String> getTags() {
-        return this.tags;
     }
 
     public String isDone() {
