@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,22 +14,22 @@ public class TaskClassTest {
 
     @Test
     public void create() {
-//        ArrayList<String> EmptyTaskTags = new ArrayList<>();
-//
-//        Date DateFirstTask = new Date(1499995447000L);
-//        Task FirstTask = new Task("FirstTaskName", 0, DateFirstTask);
-//        assertEquals(0, FirstTask.getId());
-//        assertEquals("FirstTaskName", FirstTask.getName());
-//        assertEquals(EmptyTaskTags, FirstTask.getTags());
-//        assertEquals("NO", FirstTask.isDone());
+          Set<String> EmptyTaskTags = new HashSet<>();
 
-//        Date DateSecondTask = new Date(1499995447000L);
-//        Task SecondTask = new Task("SecondTaskName", DateSecondTask, 1, 0);
-//        assertEquals(1, SecondTask.getId());
-//        assertEquals(DateSecondTask, SecondTask.getDeadline());
-//        assertEquals("SecondTaskName", SecondTask.getName());
-//        assertEquals(EmptyTaskTags, SecondTask.getTags());
-//        assertEquals("NO", SecondTask.isDone());
+          Date DateFirstTask = new Date(1499995447000L);
+          Task FirstTask = new Task("FirstTaskName", DateFirstTask, 0);
+          assertEquals(0, FirstTask.getId());
+          assertEquals("FirstTaskName", FirstTask.getText());
+          assertEquals(EmptyTaskTags, FirstTask.getTags());
+          assertEquals("NO", FirstTask.isDone());
+
+          Date DateSecondTask = new Date(1499995447000L);
+          Task SecondTask = new Task("SecondTaskName", DateSecondTask, 1);
+          assertEquals(1, SecondTask.getId());
+          assertEquals(DateSecondTask, SecondTask.getDeadline());
+          assertEquals("SecondTaskName", SecondTask.getText());
+          assertEquals(EmptyTaskTags, SecondTask.getTags());
+          assertEquals("NO", SecondTask.isDone());
     }
 
     @Test

@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.HashSet;
 
 public  class Task {
-    private  int Id;
+    private int Id;
     private Date deadline;
-    private  String text;
+    private String text;
     private Set<String> tags;
     private Boolean is_done;
     private int priority;
@@ -18,7 +18,6 @@ public  class Task {
         this.deadline = deadline;
         this.tags = new HashSet<String>();
         this.is_done = Boolean.FALSE;
-
         this.priority = 0;
 
     }
@@ -27,7 +26,6 @@ public  class Task {
         this.text = new_text;
         this.tags = new HashSet<String>();
         this.is_done = Boolean.FALSE;
-
         this.priority = 0;
 
     }
