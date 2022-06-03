@@ -91,6 +91,7 @@ public class Tasks {
     }
 
     // Сортировка по метке
+
     public void tagSort(String tag) {
         for (Task task : task_list) {
             if (task.getTags().contains(tag)) {
@@ -98,18 +99,24 @@ public class Tasks {
                 out.println("tags: ");
                 for (String t : task.getTags()) { out.print(t + " "); }
                 out.println(); 
+
             }
         }
+        return res;
     }
 
     // Сортировка по дедлайну
+
     public void deadlineSort() {
         List<Task> res = new ArrayList<>();
+
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
             res.add(task_list.get(i));
         }
+
         res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
+
         for (Task task : task_list) {
             System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task().isDone());
             out.println("tags: ");
@@ -138,11 +145,14 @@ public class Tasks {
                 out.println("tags: ");
                 for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
+
             }
         }
+        return res;
     }
 
     // Список несделанных дел 
+
     public void notDoneSort() {
         for (Task task : task_list) {
             if (!task.is_done) {
@@ -150,8 +160,11 @@ public class Tasks {
                 out.println("tags: ");
                 for (String t : task.getTags()) { out.print(t + " "); }
                 out.println();
-            }
-        }
-    }
 
+            }
+
+        }
+        return res;
+
+    }
 }

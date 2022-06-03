@@ -104,6 +104,7 @@ public class Main {
                     String tag = sc.nextLine();
                     to_print = task_man.tagSort(tag);
                 }
+
                 if (sort_option.equals("deadline")) { task_man.deadlineSort(); }
                 if (sort_option.equals("done")) { task_man.doneSort(); }
                 if (sort_option.equals("not done")) { task_man.notDoneSort(); }
@@ -111,6 +112,7 @@ public class Main {
                     out.println("Write prioptity (-1, 0 or 1)");
                     String tag = sc.nextLine();
                     task_man.priopity_sort(sc); 
+
                 }
             }
 

@@ -17,16 +17,17 @@ public final class Task {
         this.deadline = deadline;
         this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
+
         this.priority = 0;
+
     }
 
-    public Task(String new_text, Date deadline, int Id, int priority) {
+    public Task(String new_text, Date deadline, int Id) {
         this.Id = Id;
         this.text = new_text;
         this.deadline = deadline;
         this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
-        this.priority = priority;
     }
 
     public int getId() {
