@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
       - name: Maven compile 
         working-directory: .
-        run: mvn compile
+        run: mvn --batch-mode --update-snapshots verify
 
   build:
     runs-on: ubuntu-latest
