@@ -15,14 +15,15 @@ public class TaskClassTest {
     public void create() {
         ArrayList<String> EmptyTaskTags = new ArrayList<>();
 
-        Task FirstTask = new Task("FirstTaskName", 0);
+        Date DateFirstTask = new Date(1499995447000L);
+        Task FirstTask = new Task("FirstTaskName", 0, DateFirstTask);
         assertEquals(0, FirstTask.getId());
         assertEquals("FirstTaskName", FirstTask.getName());
         assertEquals(EmptyTaskTags, FirstTask.getTags());
         assertEquals("NO", FirstTask.isDone());
 
         Date DateSecondTask = new Date(1499995447000L);
-        Task SecondTask = new Task("SecondTaskName", DateSecondTask, 1);
+        Task SecondTask = new Task("SecondTaskName", DateSecondTask, 1, 0);
         assertEquals(1, SecondTask.getId());
         assertEquals(DateSecondTask, SecondTask.getDeadline());
         assertEquals("SecondTaskName", SecondTask.getName());
@@ -33,13 +34,13 @@ public class TaskClassTest {
     @Test
     public void edit() {
         Date DateSecondTask = new Date(1499995447000L);
-        Task FirstTask = new Task("FirstTaskName", DateSecondTask, 1);
+        Task FirstTask = new Task("FirstTaskName", DateSecondTask, 1, 0);
 
         Date NewDateFirstTask = new Date(1451665447567L);
-        FirstTask.edit_deadline(NewDateFirstTask);
+        FirstTask.editDeadline(NewDateFirstTask);
         assertEquals(NewDateFirstTask, FirstTask.getDeadline());
 
-        FirstTask.edit_name("123ABC!abc_edit");
+        FirstTask.editName("123ABC!abc_edit");
         assertEquals("123ABC!abc_edit", FirstTask.getName());
 
         FirstTask.done();
@@ -47,10 +48,10 @@ public class TaskClassTest {
 
         ArrayList<String> FirstTaskTags = new ArrayList<>();
         assertEquals(FirstTaskTags, FirstTask.getTags());
-        FirstTask.add_tag("first_tag");
+        FirstTask.addTag("first_tag");
         FirstTaskTags.add("first_tag");
         assertEquals(FirstTaskTags, FirstTask.getTags());
-        FirstTask.add_tag("second_tag");
+        FirstTask.addTag("second_tag");
         FirstTaskTags.add("second_tag");
         assertEquals(FirstTaskTags, FirstTask.getTags());
     }

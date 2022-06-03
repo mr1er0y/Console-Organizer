@@ -118,7 +118,7 @@ public class Main {
                 int Id = Integer.parseInt(sc.nextLine());
                 out.println("Write tag name");
                 String tag_name = sc.nextLine();
-                task_man.add_tag(Id, tag_name);
+                task_man.addTag(Id, tag_name);
                 out.println("Successfully added tag " + tag_name);
             }
 

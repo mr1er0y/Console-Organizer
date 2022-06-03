@@ -19,7 +19,7 @@ public class Tasks {
     }
 
     public void add(String text) {
-        task_list.add(new Task(text, task_list.size()));
+        task_list.add(new Task(text, task_list.size(), 0));
     }
 
     public void add(String text, String StringDate) {
@@ -27,7 +27,7 @@ public class Tasks {
         {
             try {
                 Date date = dateParser.parse(StringDate);
-                task_list.add(new Task(text, date, task_list.size()));
+                task_list.add(new Task(text, date, task_list.size(), 0));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -38,18 +38,18 @@ public class Tasks {
         task_list.get(Id).done();
     }
 
-    public void add_tag(int Id, String tag_name) {task_list.get(Id).add_tag(tag_name);}
+    public void addTag(int Id, String tag_name) {task_list.get(Id).add_tag(tag_name);}
 
     public void edit(int Id, String option, String new_value) {
         if (option.equals("n")) {
-            task_list.get(Id).edit_name(new_value);
+            task_list.get(Id).editName(new_value);
         }
         if (option.equals("d")) {
             SimpleDateFormat dateParser = new SimpleDateFormat("MM/dd/yy HH:mm");
             {
                 try {
                     Date newDate = dateParser.parse(new_value);
-                    task_list.get(Id).edit_deadline(newDate);
+                    task_list.get(Id).editDeadline(newDate);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -113,7 +113,7 @@ public class Tasks {
     // Список сделанных дел
     public void done_sort() {
         for (Task task : task_list) {
-            if (task.get(i).is_done) {
+            if (task.is_done) {
                 System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
                 out.println("tags: ");
                 for (String t : task.tags) { out.print(t + " "); }
@@ -123,9 +123,9 @@ public class Tasks {
     }
 
     // Сортировка по выбранному приоритету 
-    public void done_sort(int priopity) {
+    public void done_sort(int priority) {
         for (Task task : task_list) {
-            if (task.get(i).priopity == priopity) {
+            if (task.priority == priority) {
                 System.out.println(task.Id + ". " + task.text + " Deadline: " + task.deadline + " Is done: " + task.isDone());
                 out.println("tags: ");
                 for (String t : task.tags) { out.print(t + " "); }

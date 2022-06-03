@@ -1,45 +1,45 @@
 package Task;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
-
-
-public class Task {
+public final class Task {
     public int Id;
     public Date deadline;
     public String text;
-    public ArrayList<String> tags;
+    public HashSet<String> tags;
     public Boolean is_done;
-    public int priopity;
+    public int priority;
 
-    public Task(String new_text, int Id) {
+    public Task(String new_text, int Id, Date deadline) {
         this.Id = Id;
         this.text = new_text;
-        this.tags = new ArrayList<>();
+        this.deadline = deadline;
+        this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
-        this.priopity = 0;
+        this.priority = 0;
     }
 
     public Task(String new_text, Date deadline, int Id, int priority) {
         this.Id = Id;
-        this.deadline = deadline;
         this.text = new_text;
-        this.tags = new ArrayList<>();
+        this.deadline = deadline;
+        this.tags = new HashSet<>();
         this.is_done = Boolean.FALSE;
         this.priority = priority;
     }
 
-    public void edit_name(String new_name) {
+
+    public void editName(String new_name) {
         this.text = new_name;
     }
 
-    public void edit_deadline(Date new_deadline) {
+    public void editDeadline(Date new_deadline) {
         this.deadline = new_deadline;
     }
 
-    public Task() {
+    public Task(int id) {
+        Id = id;
     }
 
     public int getId() {
@@ -54,7 +54,7 @@ public class Task {
         return this.text;
     }
 
-    public ArrayList<String> getTags() {
+    public HashSet<String> getTags() {
         return this.tags;
     }
 
@@ -65,7 +65,7 @@ public class Task {
         return "NO";
     }
 
-    public void add_tag(String tag) {
+    public void addTag(String tag) {
         this.tags.add(tag);
     }
 
