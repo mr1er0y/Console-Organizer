@@ -40,7 +40,7 @@ public class TaskFiles {
         try (FileWriter myWriter = new FileWriter(file)) {
 
             for (Task task : list_tasks) {
-                myWriter.write("Task: " + task.getText() + " Deadline: " + task.getDeadline() + " is_done " + task.isDone() + "\n");
+                myWriter.write("Task: " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " is_done " + task.isDone() + "\n");
             }
 
             System.out.println("Successfully wrote to the file.");

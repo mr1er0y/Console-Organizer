@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class Tasks {
     public List<Task> task_list;
     private String temp_filename;
+    private int currentId;
 
     public Tasks() {
         task_list = new ArrayList<Task>();
+        currentId= 0;
     }
 
     public String getTempFilename() {
@@ -27,15 +29,23 @@ public class Tasks {
     }
 
     public void add(String text) {
-        task_list.add(new Task(text, task_list.size(), 0));
+        task_list.add(new Task(text, currentId++, 0));
     }
 
-    public void add(String text, String StringDate) {
+    public void add(String text, String StringDate, String StringPrioroty) {
         SimpleDateFormat dateParser = new SimpleDateFormat("MM/dd/yy HH:mm");
         {
             try {
-                Date date = dateParser.parse(StringDate);
-                task_list.add(new Task(text, task_list.size(), date, 0));
+                if (StringDate == null) {
+                    int priority = Integer.parseInt(StringPrioroty);
+                    task_list.add(new Task(text,  currentId++, priority));
+                } else {
+                    Date date = dateParser.parse(StringDate);
+                    int priority = Integer.parseInt(StringPrioroty);
+                    task_list.add(new Task(text,  currentId++, date, priority));
+                }
+
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -46,7 +56,9 @@ public class Tasks {
         task_list.get(Id).done();
     }
 
-    public void addTag(int Id, String tag_name) {task_list.get(Id).addTag(tag_name);}
+    public void addTag(int Id, String tag_name) {
+        task_list.get(Id).addTag(tag_name);
+    }
 
     public void edit(int Id, String option, String new_value) {
         if (option.equals("n")) {
@@ -68,13 +80,13 @@ public class Tasks {
 
     public void save(String filename) {
         TaskFiles a = new TaskFiles();
-        a.saveFile(filename,  task_list);
+        a.saveFile(filename, task_list);
     }
 
 
     public void saveJson() {
         TaskFiles a = new TaskFiles();
-        a.save_gson_file(temp_filename, task_list );
+        a.save_gson_file(temp_filename, task_list);
     }
 
     public void readJson(String filename) throws FileNotFoundException {
@@ -83,10 +95,10 @@ public class Tasks {
     }
 
     public void delete(int Id) {
-            task_list.remove(Id);
+        task_list.remove(Id);
     }
 
-    public void read(String filename){
+    public void read(String filename) {
 //        save_file(String filename,  task_list);
     }
 
@@ -95,10 +107,12 @@ public class Tasks {
     public void tagSort(String tag) {
         for (Task task : task_list) {
             if (task.getTags().contains(tag)) {
-                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
                 out.println("tags: ");
-                for (String t : task.getTags()) { out.print(t + " "); }
-                out.println(); 
+                for (String t : task.getTags()) {
+                    out.print(t + " ");
+                }
+                out.println();
 
             }
         }
@@ -114,12 +128,14 @@ public class Tasks {
             res.add(task_list.get(i));
         }
 
-//        res.sort((o1, o2) -> o1.deadline.compareTo(o2.deadline));
+        res.sort((o1, o2) -> o1.getDeadline().compareTo(o2.getDeadline()));
 
         for (Task task : task_list) {
-            System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+            System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
             out.println("tags: ");
-            for (String t : task.getTags()) { out.print(t + " "); }
+            for (String t : task.getTags()) {
+                out.print(t + " ");
+            }
             out.println();
         }
     }
@@ -129,9 +145,11 @@ public class Tasks {
         int count = 0;
         for (Task task : task_list) {
             if (task.isDone() == "YES") {
-                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
                 out.println("tags: ");
-                for (String t : task.getTags()) { out.print(t + " "); }
+                for (String t : task.getTags()) {
+                    out.print(t + " ");
+                }
                 out.println();
                 ++count;
             }
@@ -143,9 +161,11 @@ public class Tasks {
     public void priority_sort(int priority) {
         for (Task task : task_list) {
             if (task.getPriority() == priority) {
-                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
                 out.println("tags: ");
-                for (String t : task.getTags()) { out.print(t + " "); }
+                for (String t : task.getTags()) {
+                    out.print(t + " ");
+                }
                 out.println();
 
             }
@@ -158,9 +178,11 @@ public class Tasks {
         int count = 0;
         for (Task task : task_list) {
             if (task.isDone() == "NO") {
-                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+                System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
                 out.println("tags: ");
-                for (String t : task.getTags()) { out.print(t + " "); }
+                for (String t : task.getTags()) {
+                    out.print(t + " ");
+                }
                 out.println();
                 ++count;
             }

@@ -1,9 +1,9 @@
 FROM openjdk:18
-COPY out/artifacts/Console_Organizer_jar/ .
+COPY target .
 ADD src src
-RUN chmod +x  Console-Organizer.jar
+RUN chmod +x  Console-Organizer-1.1-SNAPSHOT.jar
 
-ENTRYPOINT java -jar Console-Organizer.jar
+ENTRYPOINT java -jar Console-Organizer-1.1-SNAPSHOT.jar
 
 
 

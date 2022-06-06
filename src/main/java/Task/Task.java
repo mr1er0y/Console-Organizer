@@ -18,7 +18,7 @@ public  class Task {
         this.deadline = deadline;
         this.tags = new HashSet<String>();
         this.is_done = Boolean.FALSE;
-        this.priority = 0;
+        this.priority = priority;
 
     }
     public Task(String new_text, int Id,  int priority) {
@@ -26,11 +26,11 @@ public  class Task {
         this.text = new_text;
         this.tags = new HashSet<String>();
         this.is_done = Boolean.FALSE;
-        this.priority = 0;
+        this.priority = priority;
 
     }
 
-    public Task(String new_text, Date deadline, int Id) {
+    public Task(String new_text, int Id, Date deadline) {
         this.Id = Id;
         this.text = new_text;
         this.deadline = deadline;

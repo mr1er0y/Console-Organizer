@@ -15,14 +15,14 @@ public class TaskClassTest {
           Set<String> EmptyTaskTags = new HashSet<>();
 
           Date DateFirstTask = new Date(1499995447000L);
-          Task FirstTask = new Task("FirstTaskName", DateFirstTask, 0);
+          Task FirstTask = new Task("FirstTaskName", 0, DateFirstTask);
           assertEquals(0, FirstTask.getId());
           assertEquals("FirstTaskName", FirstTask.getText());
           assertEquals(EmptyTaskTags, FirstTask.getTags());
           assertEquals("NO", FirstTask.isDone());
 
           Date DateSecondTask = new Date(1499995447000L);
-          Task SecondTask = new Task("SecondTaskName", DateSecondTask, 1);
+          Task SecondTask = new Task("SecondTaskName", 1, DateSecondTask);
           assertEquals(1, SecondTask.getId());
           assertEquals(DateSecondTask, SecondTask.getDeadline());
           assertEquals("SecondTaskName", SecondTask.getText());

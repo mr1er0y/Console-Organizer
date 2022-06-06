@@ -15,12 +15,10 @@ import java.util.Scanner;
 import Task.Tasks;
 import Task.*;
 
-/**
- * Demonstrate Java-based command-line processing with picocli.
- */
+
 @Command(
         name = "Main",
-        description = "@|bold Demonstrating picocli |@",
+        description = "@|bold description program Console_Organizer |@",
         headerHeading = "@|bold,underline Demonstration Usage|@:%n%n")
 public class Main {
     @Option(names = {"-f", "--file"}, description = "Path and name of file", required = false)
@@ -66,18 +64,23 @@ public class Main {
             input = input.trim();
             if (input.equals("add")) {
                 System.out.println("Write task");
-                String task_name = sc.nextLine();
+                String task_name = sc.nextLine().trim();
                 out.println("Want to add a deadline? (y/n)");
-                String response = sc.nextLine();
+                String response = sc.nextLine().trim();
+                String stringDate = null;
+                String stringPriority = "0";
                 if (response.equals("y")) {
                     out.println("Write deadline in MM/dd/yyyy HH:mm  format");
-                    String stringDate = sc.nextLine();
-                    task_man.add(task_name, stringDate);
+                    stringDate = sc.nextLine().trim();
                 }
-                if (response.equals("n")) {
-                    task_man.add(task_name);
-                    out.println("Added task " + task_name);
+                out.println("Want to add a priority? (y/n)");
+                response = sc.nextLine().trim();
+                if (response.equals("y")) {
+                    out.println("Write priority (-1, 0 or 1)");
+                    stringPriority = sc.nextLine().trim();
                 }
+
+                task_man.add(task_name, stringDate, stringPriority);
             }
 
             if (input.equals("done")) {
@@ -89,27 +92,35 @@ public class Main {
             if (input.equals("print")) {
                 System.out.println("Tasks:");
                 for (Task task : task_man.task_list) {
-                    System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Is done: " + task.isDone());
+                    System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
                     out.println("tags: ");
-                    for (String tag : task.getTags()) {out.print(tag + " ");}
+                    for (String tag : task.getTags()) {
+                        out.print(tag + " ");
+                    }
                     out.println();
                 }
             }
 
             if (input.equals("sort")) {
-                out.println("Choose how to sort by (tag/deadline/done/not done)");
+                out.println("Choose how to sort by (tag/deadline/done/not done/priority)");
                 String sort_option = sc.nextLine();
-                List<Task> to_print = new  ArrayList<Task>();
+                List<Task> to_print = new ArrayList<Task>();
                 if (sort_option.equals("tag")) {
                     out.println("Write tag name");
                     String tag = sc.nextLine();
                     task_man.tagSort(tag);
                 }
 
-                if (sort_option.equals("deadline")) { task_man.deadlineSort(); }
-                if (sort_option.equals("done")) { task_man.doneSort(); }
-                if (sort_option.equals("not done")) { task_man.notDoneSort(); }
-                if (sort_option.equals("priority")) { 
+                if (sort_option.equals("deadline")) {
+                    task_man.deadlineSort();
+                }
+                if (sort_option.equals("done")) {
+                    task_man.doneSort();
+                }
+                if (sort_option.equals("not done")) {
+                    task_man.notDoneSort();
+                }
+                if (sort_option.equals("priority")) {
                     out.println("Write priority (-1, 0 or 1)");
                     String num = sc.nextLine();
                     task_man.priority_sort(Integer.parseInt(num));
@@ -142,9 +153,9 @@ public class Main {
 
             if (input.equals("edit")) {
                 out.println("Write task Id");
-                int Id_to_edit = Integer.parseInt(sc.nextLine());
+                int Id_to_edit = Integer.parseInt(sc.nextLine().trim());
                 out.println("Edit name or deadline? (n/d)");
-                String option = sc.nextLine();
+                String option = sc.nextLine().trim();
                 out.println("Write new value (if deadline, then write in MM/dd/yyyy HH:mm format)");
                 String new_value = sc.nextLine();
                 task_man.edit(Id_to_edit, option, new_value);
@@ -159,6 +170,9 @@ public class Main {
             if (input.equals("help") || input.equals("h")) {
                 out.println("Option");
                 out.println("add: add your task");
+                out.println("add tag: add tag to task");
+
+
                 out.println("done: mark task as done");
                 out.println("edit: edit your task");
                 out.println("delete: delete your task");
