@@ -4,17 +4,14 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-
 import java.io.Console;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 import Task.Tasks;
 import Task.*;
-
 
 @Command(
         name = "Main",

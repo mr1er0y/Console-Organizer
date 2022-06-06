@@ -86,7 +86,6 @@ public  class Task {
         priority = new_priority;
     }
 
-
     public void editName(String new_name) {
         this.text = new_name;
     }
@@ -110,9 +109,7 @@ public  class Task {
         this.tags.add(tag);
     }
 
-
     public void done() {
         this.is_done = Boolean.TRUE;
     }
-
 }

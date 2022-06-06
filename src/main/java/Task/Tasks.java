@@ -17,7 +17,7 @@ public class Tasks {
 
     public Tasks() {
         task_list = new ArrayList<Task>();
-        currentId= 0;
+        currentId = 0;
     }
 
     public String getTempFilename() {
@@ -104,7 +104,8 @@ public class Tasks {
 
     // Сортировка по метке
 
-    public void tagSort(String tag) {
+    public int tagSort(String tag) {
+        int count = 0;
         for (Task task : task_list) {
             if (task.getTags().contains(tag)) {
                 System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
@@ -113,15 +114,16 @@ public class Tasks {
                     out.print(t + " ");
                 }
                 out.println();
-
+                ++count;
             }
         }
+        return count;
     }
 
     // Сортировка по дедлайну
 
-    public void deadlineSort() {
-        List<Task> res = new ArrayList<Task>();
+    public List<Task> deadlineSort() {
+        List<Task> res = new ArrayList<>();
 
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
@@ -138,6 +140,7 @@ public class Tasks {
             }
             out.println();
         }
+        return res;
     }
 
     // Список сделанных дел
