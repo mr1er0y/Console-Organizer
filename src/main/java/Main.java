@@ -87,18 +87,6 @@ public class Main {
             }
 
             if (input.equals("print")) {
-                System.out.println("Tasks:");
-                for (Task task : task_man.task_list) {
-                    System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
-                    out.println("tags: ");
-                    for (String tag : task.getTags()) {
-                        out.print(tag + " ");
-                    }
-                    out.println();
-                }
-            }
-
-            if (input.equals("sort")) {
                 out.println("Choose how to sort by (tag/deadline/done/not done/priority)");
                 String sort_option = sc.nextLine();
                 List<Task> to_print = new ArrayList<Task>();

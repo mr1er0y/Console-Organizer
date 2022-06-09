@@ -127,10 +127,12 @@ public class Tasks {
 
         //  deepcopy
         for (int i = 0; i < task_list.size(); i++) {
-            res.add(task_list.get(i));
+            if (task_list.get(i).getDeadline() != null) {
+                res.add(task_list.get(i));
+            }
         }
 
-        res.sort((o1, o2) -> o1.getDeadline().compareTo(o2.getDeadline()));
+        res.sort((o2, o1) -> o2.getDeadline().compareTo(o1.getDeadline()));
 
         for (Task task : task_list) {
             System.out.println(task.getId() + ". " + task.getText() + " Deadline: " + task.getDeadline() + " Priority: " + task.getPriority() + " Is done: " + task.isDone());
